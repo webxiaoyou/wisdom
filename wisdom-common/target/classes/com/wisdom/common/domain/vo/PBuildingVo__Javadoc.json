@@ -1,0 +1,1 @@
+{"doc":" 楼栋信息表(PBuilding)内容返回实体类表\n\n @author wisdom\n @since 2023-12-02 20:54:07\n","fields":[{"name":"buildingId","doc":"\n 楼栋ID \n"},{"name":"propertyId","doc":"\n 物业项目ID \n"},{"name":"buildingNumber","doc":"\n 楼栋编号 \n"},{"name":"propertyName","doc":" 物业项目名称\n"}],"enumConstants":[],"methods":[],"constructors":[]}

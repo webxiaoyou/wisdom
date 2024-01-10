@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql:3306/wisdom?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: '123456'
+
+  servlet:
+    multipart:
+      max-file-size: 10MB  # 允许上传的最大文件大小
+      max-request-size: 20MB  # 允许的最大请求大小
+
+  redis:
+    host: redis
+    port: 6379  # Redis 服务器主机名和端口号
+    # 数据库索引
+    database: 0
+    # 密码(如没有密码请注释掉)
+    # password:
+    # 连接超时时间
+    timeout: 10s
+    # 是否开启ssl
+    ssl: false
+    # redis key前缀
+    keyPrefix: wisdom
+

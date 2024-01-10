@@ -1,0 +1,1 @@
+{"doc":" 物业项目信息表(PProperty)内容返回实体类表\n\n @author wisdom\n @since 2023-12-02 14:04:48\n","fields":[{"name":"propertyId","doc":"\n 物业项目ID \n"},{"name":"propertyName","doc":"\n 物业项目名称 \n"},{"name":"address","doc":"\n 物业项目地址 \n"},{"name":"managerName","doc":"\n 项目经理姓名 \n"},{"name":"phone","doc":" 项目经理联系方式\n"}],"enumConstants":[],"methods":[],"constructors":[]}

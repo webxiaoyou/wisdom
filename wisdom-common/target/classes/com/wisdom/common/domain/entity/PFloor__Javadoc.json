@@ -1,0 +1,1 @@
+{"doc":" 楼层信息表(PFloor)表实体类\n\n @author wisdom\n @since 2023-12-02 21:16:24\n","fields":[{"name":"floorId","doc":"\n 楼层ID \n"},{"name":"buildingId","doc":"\n 楼栋ID \n"},{"name":"floorNumber","doc":"\n 楼层编号 \n"},{"name":"buildingNumber","doc":" 楼栋编号\n"}],"enumConstants":[],"methods":[],"constructors":[]}

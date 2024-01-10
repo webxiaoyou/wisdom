@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wisdom.common.mapper.PPropertyMapper">
+
+    <resultMap type="com.wisdom.common.domain.entity.PProperty" id="PPropertyMap">
+        <result property="propertyId" column="property_id" jdbcType="INTEGER"/>
+        <result property="propertyName" column="property_name" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="managerName" column="manager_name" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+    </resultMap>
+
+</mapper>
+

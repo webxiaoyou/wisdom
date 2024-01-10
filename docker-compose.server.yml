@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  # wisdom-admin-server 服务
+  wisdom-admin-server:
+    container_name: wisdom-admin-server
+    build:
+      context: ./wisdom-admin-server  # Dockerfile 所在目录
+      dockerfile: Dockerfile
+    ports:
+      - '8989:8989'  # 映射宿主机端口到容器端口
+    networks:
+      - wisdom-network
+#    depends_on:   #启动顺序 比如先启动什么 然后在执行启动什么 注意他是个异步
+#      - mysql
+#      - redis
+
+  # wisdom-proprietor-server 服务
+  wisdom-proprietor-server:
+    build:
+      context: ./wisdom-proprietor-server  # Dockerfile 所在目录
+      dockerfile: Dockerfile
+    image: wisdom-proprietor-server
+    container_name: wisdom-proprietor-server
+    ports:
+      - '7777:7777'  # 映射宿主机端口到容器端口
+    networks:
+      - wisdom-network
+    depends_on:
+      - wisdom-admin-server
+networks:
+  wisdom-network:

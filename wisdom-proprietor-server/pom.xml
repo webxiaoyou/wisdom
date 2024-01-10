@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>wisdomSteward</artifactId>
+        <groupId>com.wisdom</groupId>
+        <version>1.0</version>
+    </parent>
+    <artifactId>wisdom-proprietor-server</artifactId>
+    <description>
+        小程序服务入口
+    </description>
+    <dependencies>
+        <!--核心模块-->
+        <dependency>
+            <groupId>com.wisdom</groupId>
+            <artifactId>wisdom-framework</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.wisdom</groupId>
+            <artifactId>wisdom-system</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.wisdom</groupId>
+            <artifactId>wisdom-oss</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-miniapp</artifactId>
+            <version>${weixin-java-miniapp.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "f-navbar": "/components/module/f-navbar/f-navbar"
+  }
+}

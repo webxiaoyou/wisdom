@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "mescroll-body分页",
+  "usingComponents": {
+    "mescroll-body": "/uni_modules/mescroll-uni/components/mescroll-body/mescroll-body",
+    "goods-list": "/pagesDome/mescroll/module/goods-list"
+  }
+}

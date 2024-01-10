@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "编辑地址",
+  "usingComponents": {
+    "f-city-picker": "/components/module/f-city-picker/f-city-picker"
+  }
+}

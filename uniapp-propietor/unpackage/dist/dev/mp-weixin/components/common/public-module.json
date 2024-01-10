@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "f-loading": "/components/common/loading",
+    "f-login": "/components/module/f-login/f-login",
+    "f-wx-login": "/components/module/f-wxLogin/f-wxLogin"
+  }
+}

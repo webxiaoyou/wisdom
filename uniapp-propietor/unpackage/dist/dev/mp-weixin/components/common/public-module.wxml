@@ -1,0 +1,1 @@
+<view><f-loading vue-id="59e6beff-1" bind:__l="__l"></f-loading><f-login vue-id="59e6beff-2" bind:__l="__l"></f-login><f-wx-login vue-id="59e6beff-3" bind:__l="__l"></f-wx-login></view>

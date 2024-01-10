@@ -1,0 +1,1 @@
+{"doc":" 请求配置\n\n @author wisdom\n","fields":[],"enumConstants":[],"methods":[{"name":"corsFilter","paramTypes":[],"doc":" 跨域配置\n"}],"constructors":[]}

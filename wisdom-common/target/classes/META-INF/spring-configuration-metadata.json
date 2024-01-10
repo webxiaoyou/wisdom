@@ -1,0 +1,48 @@
+{
+  "groups": [
+    {
+      "name": "wisdom",
+      "type": "com.wisdom.common.config.WisdomConfig",
+      "sourceType": "com.wisdom.common.config.WisdomConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "wisdom.address-enabled",
+      "type": "java.lang.Boolean",
+      "description": "获取地址开关",
+      "sourceType": "com.wisdom.common.config.WisdomConfig"
+    },
+    {
+      "name": "wisdom.cache-lazy",
+      "type": "java.lang.Boolean",
+      "description": "缓存懒加载",
+      "sourceType": "com.wisdom.common.config.WisdomConfig"
+    },
+    {
+      "name": "wisdom.copyright-year",
+      "type": "java.lang.String",
+      "description": "版权年份",
+      "sourceType": "com.wisdom.common.config.WisdomConfig"
+    },
+    {
+      "name": "wisdom.demo-enabled",
+      "type": "java.lang.Boolean",
+      "description": "实例演示开关",
+      "sourceType": "com.wisdom.common.config.WisdomConfig"
+    },
+    {
+      "name": "wisdom.name",
+      "type": "java.lang.String",
+      "description": "项目名称",
+      "sourceType": "com.wisdom.common.config.WisdomConfig"
+    },
+    {
+      "name": "wisdom.version",
+      "type": "java.lang.String",
+      "description": "版本",
+      "sourceType": "com.wisdom.common.config.WisdomConfig"
+    }
+  ],
+  "hints": []
+}

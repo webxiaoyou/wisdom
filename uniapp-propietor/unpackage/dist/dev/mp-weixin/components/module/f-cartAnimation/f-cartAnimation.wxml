@@ -1,0 +1,1 @@
+<view class="data-v-52d84cfa"><block wx:for="{{linePosArr}}" wx:for-item="item" wx:for-index="index" wx:key="index"><block class="data-v-52d84cfa"><view hidden="{{!(!item.hide_good_box)}}" class="good_box data-v-52d84cfa" style="{{'left:'+(item.bus_x+'px')+';'+('top:'+(item.bus_y+'px')+';')+('background:'+(color)+';')}}"></view></block></block></view>

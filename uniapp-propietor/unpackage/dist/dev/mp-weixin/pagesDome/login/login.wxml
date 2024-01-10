@@ -1,0 +1,1 @@
+<view><public-module vue-id="9e028b6e-1" bind:__l="__l"></public-module><view data-event-opts="{{[['tap',[['openLogin',['$event']]]]]}}" class="titleBtn" bindtap="__e">打开登录弹窗</view></view>

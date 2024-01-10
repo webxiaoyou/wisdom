@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "首页",
+  "usingComponents": {
+    "f-tabbar": "/components/module/f-tabbar/f-tabbar",
+    "f-ad": "/components/module/f-ad/f-ad"
+  }
+}
