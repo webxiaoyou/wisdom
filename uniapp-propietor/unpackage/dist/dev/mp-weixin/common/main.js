@@ -32,6 +32,9 @@ _vue.default.prototype.$store = _store.default;
 //判断是否登录
 
 _vue.default.prototype.judgeLogin = _login.judgeLogin;
+//判断是否认证
+
+_vue.default.prototype.judgeAuthentication = _login.judgeAuthentication;
 
 // uview
 
@@ -44,14 +47,14 @@ _vue.default.use(_uviewUi.default);
 // 基于iconfont图标库组件
 var fIcon = function fIcon() {
   __webpack_require__.e(/*! require.ensure | components/module/f-icon/f-icon */ "components/module/f-icon/f-icon").then((function () {
-    return resolve(__webpack_require__(/*! @/components/module/f-icon/f-icon.vue */ 456));
+    return resolve(__webpack_require__(/*! @/components/module/f-icon/f-icon.vue */ 553));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 _vue.default.component("f-icon", fIcon);
 // 公共组件
 var publicModule = function publicModule() {
   __webpack_require__.e(/*! require.ensure | components/common/public-module */ "components/common/public-module").then((function () {
-    return resolve(__webpack_require__(/*! @/components/common/public-module.vue */ 463));
+    return resolve(__webpack_require__(/*! @/components/common/public-module.vue */ 560));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 _vue.default.component("public-module", publicModule);

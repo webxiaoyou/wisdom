@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.List;
+
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -58,6 +60,12 @@ public class PRepairVo implements Serializable {
      */
     @TableField("category")
     private String category;
+
+    /**
+     * 报修事项标题
+     */
+    @TableField("title")
+    private String title;
 
     /**
      * 报修描述，用户对问题的文字描述

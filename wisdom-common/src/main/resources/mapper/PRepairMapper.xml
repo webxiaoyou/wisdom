@@ -9,6 +9,7 @@
         <result property="buildingId" column="building_id" jdbcType="INTEGER"/>
         <result property="floorId" column="floor_id" jdbcType="INTEGER"/>
         <result property="category" column="category" jdbcType="VARCHAR"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
         <result property="description" column="description" jdbcType="VARCHAR"/>
         <result property="imageUrls" column="image_urls" jdbcType="VARCHAR"/>
         <result property="status" column="status" jdbcType="VARCHAR"/>

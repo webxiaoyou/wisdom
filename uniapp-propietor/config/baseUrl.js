@@ -3,7 +3,8 @@ let baseUrl = "";
 if (process.env.NODE_ENV === 'development') {
 	// 开发环境
 	// baseUrl = 'https://api.yichengshi.cn'
-    baseUrl = 'http://localhost:7777/wisdom/proprietor'
+    // baseUrl = 'http://localhost:7777/wisdom/proprietor' //本地
+	baseUrl = 'http://192.168.1.7:7777/wisdom/proprietor' //本地
 } else if (process.env.NODE_ENV === 'production') {
 	// 生产环境
 	baseUrl = 'https://api.yichengshi.cn'

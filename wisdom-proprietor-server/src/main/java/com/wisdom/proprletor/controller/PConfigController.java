@@ -1,26 +1,19 @@
 package com.wisdom.proprletor.controller;
 
 
-import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.wisdom.common.domain.ResponseResult;
 import com.wisdom.common.domain.dto.PBuildingDictDTO;
 import com.wisdom.common.domain.dto.PFloorDTO;
 import com.wisdom.common.service.PBuildingService;
 import com.wisdom.common.service.PFloorService;
 import com.wisdom.common.service.PPropertyService;
-import com.wisdom.system.domain.dto.DictDataDto;
+import com.wisdom.system.service.ISysDictDataService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
- * <p>
  * 小程序配置表 前端控制器
- * </p>
  *
  * @author wisdom
  * @since 2023-11-13
@@ -36,6 +29,9 @@ public class PConfigController {
 
     private final PFloorService pFloorService;
 
+    private final ISysDictDataService sysDictDataService;
+
+
     @GetMapping("list")
     public ResponseResult selectAll() {
         return ResponseResult.okResult("hello word");
@@ -43,16 +39,18 @@ public class PConfigController {
 
     /**
      * 小区列表
+     *
      * @param propertyId
      * @return
      */
-    @GetMapping("/roperty/dict/list")
+    @GetMapping("/property/dict/list")
     public ResponseResult selectAll(@RequestParam(value = "propertyId", required = false) Long propertyId) {
         return pPropertyService.selectDictAll(propertyId);
     }
 
     /**
      * 小区栋数列表
+     *
      * @param pBuildingDictDTO
      * @return
      */
@@ -64,14 +62,24 @@ public class PConfigController {
     /**
      * 小区楼层列表
      *
-     * @param pFloorDTO 查询条件
-     * @return 列表结果
+     * @param buildingId
+     * @return
      */
-//    @SaCheckPermission("tenement:pbuilding:list")
-    @GetMapping("/floor/list")
-    public ResponseResult selectAll(PFloorDTO pFloorDTO) {
-        return pFloorService.selectAll(pFloorDTO);
+    @GetMapping("/floor/dict/list")
+    public ResponseResult selectDictAll(@RequestParam(value = "buildingId", required = false) Long buildingId) {
+        return pFloorService.selectDictAll(buildingId);
     }
 
+    /**
+     * 根据字典类型获取字典信息
+     *
+     * @param dictType 字典类型
+     * @return 字典信息
+     */
+//    @SaCheckPermission("system:dict:type")
+    @GetMapping(value = "/system/dict/data/{dictType}")
+    public ResponseResult getTypeInfo(@PathVariable String dictType) {
+        return sysDictDataService.selectDictDataByType(dictType);
+    }
 
 }

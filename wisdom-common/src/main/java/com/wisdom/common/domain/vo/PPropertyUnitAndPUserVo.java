@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 房屋信息表(PPropertyUnit)内容返回实体类表
@@ -259,5 +260,11 @@ public class PPropertyUnitAndPUserVo implements Serializable {
      */
     @TableField("account")
     private String account;
+
+    /**
+     * 多个用户的单元id
+     */
+    @TableField(exist = false)
+    private List<Long> buildingIds;
 
 }

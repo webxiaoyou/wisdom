@@ -24,9 +24,6 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.myInfo.data-v-46427794 {
-  min-height: 2000rpx;
-}
 .headBox.data-v-46427794 {
   padding-top: 128rpx;
   background: linear-gradient(to left top, #f32735, #fc674d);

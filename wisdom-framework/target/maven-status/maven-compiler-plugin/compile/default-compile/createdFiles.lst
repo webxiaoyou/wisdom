@@ -9,6 +9,7 @@ com\wisdom\framework\handler\OpenApiHandler__Javadoc.json
 com\wisdom\framework\listener\UserActionListener.class
 com\wisdom\framework\satoken\dao\PlusSaTokenDao__Javadoc.json
 com\wisdom\framework\config\properties\RedissonProperties.class
+com\wisdom\framework\mybatisplus\MyMetaObjectHandler.class
 META-INF\spring-configuration-metadata.json
 com\wisdom\framework\config\JacksonConfig.class
 com\wisdom\framework\handler\KeyPrefixHandler.class

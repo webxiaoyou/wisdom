@@ -33,11 +33,17 @@ public class PCommunityActivityServiceImpl extends ServiceImpl<PCommunityActivit
     */
     @Override
     public ResponseResult selectAll(PCommunityActivityDTO pCommunityActivityDTO) {
+
         LambdaQueryWrapper<PCommunityActivity> queryWrapper = new LambdaQueryWrapper<>();
         // 根据实际需求添加查询条件
         queryWrapper.eq(pCommunityActivityDTO.getPropertyId() != null, PCommunityActivity::getPropertyId,pCommunityActivityDTO.getPropertyId());
         queryWrapper.eq(StringUtils.hasText(pCommunityActivityDTO.getTitle()), PCommunityActivity::getTitle, pCommunityActivityDTO.getTitle());
         queryWrapper.eq(StringUtils.hasText(pCommunityActivityDTO.getLocation()), PCommunityActivity::getLocation, pCommunityActivityDTO.getLocation());
+        if ("desc".equalsIgnoreCase(pCommunityActivityDTO.getOrder())) {
+            queryWrapper.orderByDesc(PCommunityActivity::getCreateTime);
+        } else if ("asc".equalsIgnoreCase(pCommunityActivityDTO.getOrder())) {
+            queryWrapper.orderByAsc(PCommunityActivity::getCreateTime);
+        }
         // queryWrapper.like(StringUtils.hasText(pCommunityActivityDTO.getPostCode()), PCommunityActivity::getPostCode, pCommunityActivityDTO.getPostCode());
        // queryWrapper.like(StringUtils.hasText(pCommunityActivityDTO.getPostName()), PCommunityActivity::getPostName, pCommunityActivityDTO.getPostName());
         //添加按起始时间和结束时间查询条件（仅在不为null时添加）

@@ -209,3 +209,42 @@ export const judgeLogin = (callback) => {
         callback && callback()
     }
 }
+
+
+//判断是否认证验证
+var throttleAuthentication = true
+export const judgeAuthentication = (callback) => {
+    let storeUserInfo = store.state.userInfo;
+	console.log(storeUserInfo,'storeUserInfo----')
+    if (storeUserInfo.user.authenticationStatus!="1") {
+		if(throttleAuthentication){
+		    throttleAuthentication = false
+			setTimeout(()=>{
+			    throttleAuthentication = true //节流
+			},1000)
+			store.commit('setCurrentRouter',getCurrentRouter()) //获取当前路径
+			// #ifdef MP
+			store.commit('setAuthenticationModalShow', true);
+			// #endif
+			// #ifdef APP-PLUS
+			uni.$showModal({
+			    title: "认证提示",
+			    confirmVal:'去认证',
+			    cancelVal:'再逛会',
+			    content:'此时此刻需要您认证喔~',
+			}).then(res=>{
+			    uni.navigateTo({
+			        url: ""
+			    });
+			}).catch(res=>{})
+			// #endif
+			// #ifdef H5
+			h5Login();
+			// #endif
+		}else{
+			// uni.$u.toast('您点击的太频繁了')
+		}
+    }else{
+        callback && callback()
+    }
+}

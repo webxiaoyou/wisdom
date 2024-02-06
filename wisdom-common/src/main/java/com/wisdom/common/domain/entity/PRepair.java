@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.annotation.*;
 import lombok.EqualsAndHashCode;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.List;
+
 /**
  * 报修信息表(PRepair)表实体类
  *
@@ -58,6 +60,12 @@ public class PRepair  implements Serializable {
      */
     @TableField("category")
     private String category;
+
+    /**
+     * 报修事项标题
+     */
+    @TableField("title")
+    private String title;
 
     /**
      * 报修描述，用户对问题的文字描述

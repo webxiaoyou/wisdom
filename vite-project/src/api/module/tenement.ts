@@ -40,6 +40,8 @@ import Http, { Axios } from '@/utils/axios';
      PFLOORSA = '/pfloor/save',
      PFLOORUP = '/pfloor/update',
      PFLOORDel = '/pfloor/delete',
+     PFLOORDICTLIST ='/pfloor/dict/list',
+
 
      //业主信息
      PPROPERTYUNITLIST = '/pproperty_unit/list',
@@ -164,6 +166,9 @@ export const tmt_pfloor_up = (data) => {
 };
 export const tmt_pfloor_del = (data) => {
     return Axios.delete(ApiDict.PFLOORDel + "?idList=" + data);
+};
+export const tmt_pfloor_dict_id = (data={}) => {
+    return Axios.get(ApiDict.PFLOORDICTLIST , data);
 };
 
 //业主信息

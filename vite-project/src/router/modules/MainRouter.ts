@@ -21,8 +21,8 @@ const MainRouter: RouteRecordRaw[] = [
         name: 'home',
         meta: {
           title: '控制台',
-          keepAlive: true,
-          requireAuth: true,
+          keepAlive: false,
+          requireAuth: false,
         },
         component: () => import('@/views/Home.vue'),
       },

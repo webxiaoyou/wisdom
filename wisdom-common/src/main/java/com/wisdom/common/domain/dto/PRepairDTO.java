@@ -3,6 +3,8 @@ package com.wisdom.common.domain.dto;
 import java.time.LocalDateTime;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 import com.baomidou.mybatisplus.annotation.*;
 import com.wisdom.common.domain.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -60,6 +62,12 @@ public class PRepairDTO extends BaseEntity {
      */
     @TableField("category")
     private String category;
+
+    /**
+     * 报修事项标题
+     */
+    @TableField("title")
+    private String title;
 
     /**
      * 报修描述，用户对问题的文字描述

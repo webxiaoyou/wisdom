@@ -15,8 +15,12 @@
         </a-select>
       </template>
       <template v-if="column.dataIndex === 'status'">
-        <a-tag :color="text == 0 ? 'success' : 'error'">{{ text == 0 ? '已阅读' : '未阅读' }}</a-tag>
+        <a-tag :color="text == 0 ? 'success' : 'processing'">{{ text == 0 ? '已阅读' : '未阅读' }}</a-tag>
       </template>
+      <template v-if="column.dataIndex === 'isSuggest'">
+        <a-tag :color="text == 0 ? 'error' : 'warning'">{{ text == 0 ? '投诉' : '建议' }}</a-tag>
+      </template>
+      
       <!-- <template v-if="column.dataIndex === 'state'">
         <a-popconfirm :title="`你确定要${record.status === '0' ? '停用' : '启用'} ${record.roleName} 用户吗`" ok-text="确定"
           cancel-text="取消" @confirm="onConfirm(record.status, record.postId)" @cancel="cancel(index)">
@@ -25,7 +29,7 @@
         </a-popconfirm>
       </template> -->
       <template v-if="column.dataIndex === 'operation' && record.roleName != '超级管理员'">
-        <a-button type="link" @click="onConfirm('1', record.postId)" v-if="record.status==1">
+        <a-button type="link" @click="onConfirm('0', record.id)" v-if="record.status==1">
           <template #icon>
             <Icon icon="uil:edit" style="vertical-align: middle;" />
           </template>

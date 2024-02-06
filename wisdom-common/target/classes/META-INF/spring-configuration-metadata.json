@@ -11,13 +11,15 @@
       "name": "wisdom.address-enabled",
       "type": "java.lang.Boolean",
       "description": "获取地址开关",
-      "sourceType": "com.wisdom.common.config.WisdomConfig"
+      "sourceType": "com.wisdom.common.config.WisdomConfig",
+      "defaultValue": false
     },
     {
       "name": "wisdom.cache-lazy",
       "type": "java.lang.Boolean",
       "description": "缓存懒加载",
-      "sourceType": "com.wisdom.common.config.WisdomConfig"
+      "sourceType": "com.wisdom.common.config.WisdomConfig",
+      "defaultValue": false
     },
     {
       "name": "wisdom.copyright-year",
@@ -29,7 +31,8 @@
       "name": "wisdom.demo-enabled",
       "type": "java.lang.Boolean",
       "description": "实例演示开关",
-      "sourceType": "com.wisdom.common.config.WisdomConfig"
+      "sourceType": "com.wisdom.common.config.WisdomConfig",
+      "defaultValue": false
     },
     {
       "name": "wisdom.name",

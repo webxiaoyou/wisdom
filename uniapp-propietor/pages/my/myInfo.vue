@@ -16,9 +16,9 @@
 					<view class="u-flex-1" @click="onJump('/pages/user/set')">
 						<view class="nickName u-flex">
 							<view class="name u-m-r-10" v-if="userInfo.nickName">{{userInfo.nickName}}</view>
-							<view class="placardVip">超级vip</view>
+							<!-- <view class="placardVip">超级vip</view> -->
 						</view>
-						<view class="detail" v-if="userInfo.phoneNum">手机号：{{userInfo.phoneNum | phone}}</view>
+						<view class="detail" v-if="userInfo.user.tel">手机号：{{userInfo.user.tel | phone}}</view>
 						<view class="detail" v-else>手机号:未绑定</view>
 					</view>
 				</block>
@@ -47,7 +47,7 @@
 					</view>
 					<view class="u-flex-1" @click="onJump('/pages/user/set')">
 						<view class="nickName">{{userInfo.userName}}</view>
-						<view class="detail" v-if="userInfo.phoneNum">手机号：{{userInfo.phoneNum | phone}}</view>
+						<view class="detail" v-if="userInfo.user.tel">手机号：{{userInfo.user.tel | phone}}</view>
 						<view class="detail" v-else>手机号:未绑定</view>
 					</view>
 				</block>
@@ -71,19 +71,19 @@
 			<view class="vipBox">
 				<view class="card">
 					<view class="left">
-						<view class="title">VIP</view>
+						<!-- <view class="title">VIP</view> -->
 						<view class="tips" v-if="isVIP">尊贵的会员，您好！</view>
-						<view class="tips" v-else>成为会员，享受更好的服务体验~</view>
+						<view class="tips" v-else>智慧管家，是你的信赖</view>
 					</view>
 					<view class="right">
-						<view class="button" v-if="isVIP">会员中心</view>
-						<view class="button" v-else>成为会员</view>
+						<!-- 	<view class="button" v-if="isVIP">会员中心</view>
+						<view class="button" v-else>成为会员</view> -->
 					</view>
 				</view>
 			</view>
 		</view>
 		<view class="main">
-			<view class="itemBox" @click="onTokenJump('pages/order/order')">
+			<!-- <view class="itemBox" @click="onTokenJump('pages/order/order')">
 				<view class="titleBox u-flex">
 					<view class="title u-flex-m">我的订单</view>
 					<view class="word">全部订单</view>
@@ -97,16 +97,17 @@
 						</view>
 					</u-grid-item>
 				</u-grid>
-			</view>
+			</view> -->
 			<view class="itemBox">
 				<view class="titleBox u-flex" style="border: none;padding-bottom: 0;">
 					<view class="title">功能与服务</view>
 				</view>
 				<u-grid :col="5" :border="false">
-					<u-grid-item v-for="(item,index) in moreFun" :key="index" @click="navClick(item.onPlate)">
+					<u-grid-item v-for="(item,index) in moreFun" :key="item.id" @click="navClick(item.onPlate)">
 						<view class="u-flex u-p-t-30 u-p-b-30"
 							style="position: relative;flex-direction: column;justify-content: center;">
-							<image style="width: 70rpx;height: 70rpx;" :src="baseUrl+item.icon" />
+							<image style="width: 70rpx;height: 70rpx;" :src="item.icon" />
+							<!-- <image style="width: 70rpx;height: 70rpx;" :src="baseUrl+item.icon" /> -->
 							<view class="grid-text" style="color: #666;font-size: 22rpx;">{{item.word}}</view>
 							<!-- #ifdef MP-WEIXIN -->
 							<button style="opacity: 0;width: 100%;height: 100%;position: absolute;left: 0;top: 0;"
@@ -131,7 +132,8 @@
 	import fNavbar from '@/components/module/f-navbar/f-navbar';
 	import fTabbar from '@/components/module/f-tabbar/f-tabbar';
 	import {
-		getUserList,getUserLoginUpAvatar
+		getUserList,
+		getUserLoginUpAvatar
 	} from '@/config/api.js';
 
 	export default {
@@ -152,53 +154,55 @@
 				scrollTop: 0,
 				isVIP: false,
 				// 订单
-				order: [{
-					icon: 'rmb-circle-fill',
-					word: '待付款'
-				}, {
-					icon: 'car-fill',
-					word: '待配送'
-				}, {
-					icon: 'bag-fill',
-					word: '待收货'
-				}, {
-					icon: 'chat-fill',
-					word: '待评价'
-				}, {
-					icon: 'server-fill',
-					word: '退款/售后'
-				}],
+				// order: [{
+				// 	icon: 'rmb-circle-fill',
+				// 	word: '待付款'
+				// }, {
+				// 	icon: 'car-fill',
+				// 	word: '待配送'
+				// }, {
+				// 	icon: 'bag-fill',
+				// 	word: '待收货'
+				// }, {
+				// 	icon: 'chat-fill',
+				// 	word: '待评价'
+				// }, {
+				// 	icon: 'server-fill',
+				// 	word: '退款/售后'
+				// }],
 				moreFun: [{
-						icon: '/minImage/funMoreIcon2.png',
-						word: '收货地址',
-						onPlate: 'goMyAddressList',
-					}, {
-						icon: '/minImage/funMoreIcon1.png',
-						word: '我的优惠券',
+						id: 1,
+						icon: require('@/static/tenement/kong/bianpinghuatubiaosheji.svg'),
+						word: '业主认证',
+						onPlate: 'authentication',
+					},
+					{
+						id: 2,
+						icon: require('@/static/tenement/kong/fangkeyuyuebeifen.svg'),
+						word: '访客邀请',
 						onPlate: 'goCashCouponList',
 					},
 					{
-						icon: '/minImage/funMoreIcon3.png',
-						word: '客服帮助',
-						onPlate: 'onHelp',
+						id: 3,
+						icon: require('@/static/tenement/kong/house.svg'),
+						word: '房产信息',
+						onPlate: 'goHouseList',
 					},
 					{
-						icon: '/minImage/funMoreIcon4.png',
-						word: '意见反馈',
-						onPlate: 'goFeedback',
-					}, {
-						icon: '/minImage/funMoreIcon5.png',
-						word: '关于我们',
-						onPlate: 'goAbout',
-					}
+						id: 4,
+						icon: require('@/static/tenement/kong/Package.svg'),
+						word: '报事报修',
+						onPlate: 'goPackageList',
+					},
+
 				],
 			}
 		},
 		onLoad() {
 			// 隐藏原生的tabbar
 			uni.hideTabBar();
-			
-			
+
+
 		},
 		methods: {
 			...mapMutations(['setLoginPopupShow']),
@@ -207,20 +211,8 @@
 					url: url
 				})
 			},
-			upac() {
-				let data = {
-					avatar: "http://192.168.159.136:9000/wisdom/wisdom/2023/11/30/2dc6a24b3d5e422e8a0575ca13dabff1.jpeg"
-				}
-				getUserLoginUpAvatar("http://192.168.159.136:9000/wisdom/wisdom/2023/11/30/2dc6a24b3d5e422e8a0575ca13dabff1.jpeg").then(ress => {
-					debugger
-				})
-			},
-			ups(){
-				let data = {}
-				getUserList(data).then(res => {
-					console.log(res)
-				})
-			},
+
+
 			// 跳转前判断登录
 			onTokenJump(url) {
 				this.judgeLogin(() => {
@@ -233,24 +225,27 @@
 				this.judgeLogin()
 			},
 			navClick(e) {
-				var url = ''
-				if (e == 'goMyAddressList') {
-					this.$u.toast('您点击了收货地址~')
-					this.upac();
-				} else if (e == 'goCashCouponList') {
-					this.$u.toast('您点击了我的优惠券~')
-					this.ups();
-				} else if (e == 'onHelp') {
-					// #ifndef MP-WEIXIN
-					console.log('小程序客服~')
-					// #endif
-				} else if (e == 'goFeedback') {
-					this.$u.toast('您点击了意见反馈~')
-				} else if (e == 'goAbout') {
-					this.$u.toast('您点击了关于我们~')
-				}
-				// url!='' && this.onJump(url)
+				this.judgeLogin(() => {
+					this.judgeAuthentication(() => {
+						if (e == 'authentication') {
+							this.$u.toast('你完成认证')
+						} else if (e == 'goPackageList') {
+							this.toNavgate('/pagesPackageA/repair/list')
+						} else if (e == 'goHouseList') {
+							this.toNavgate('/pagesPackageA/house/house')
+						}
+					})
+
+					// uni.navigateTo({
+					// 	url: url
+					// });
+				});
 			},
+			toNavgate(url){
+				uni.navigateTo({
+					url
+				})
+			}
 		},
 		onPageScroll(e) {
 			this.scrollTop = e.scrollTop;
@@ -261,7 +256,7 @@
 <style lang="scss" scoped>
 	.myInfo {
 		// 这里设置高度，上拉显示菜单栏---正式环境删除
-		min-height: 2000rpx;
+		// min-height: 2000rpx;
 	}
 
 	.headBox {

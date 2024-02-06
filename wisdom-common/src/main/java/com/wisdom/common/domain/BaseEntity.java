@@ -38,4 +38,8 @@ public class BaseEntity implements Serializable {
     @TableField(exist = false)
     private List<LocalDateTime> params ;
 
+    @TableField(exist = false)
+    private String order;
+
+
 }

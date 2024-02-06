@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.wisdom.common.domain.ResponseResult;
 import com.wisdom.common.domain.dto.PUserDto;
 import com.wisdom.common.domain.entity.PUser;
-import com.wisdom.common.domain.vo.PUserVo;
+import com.wisdom.common.domain.vo.PPropertyUnitAndPUserVo;
 
 /**
  * <p>
@@ -16,7 +16,7 @@ import com.wisdom.common.domain.vo.PUserVo;
  */
 public interface IPUserService extends IService<PUser> {
 
-    PUserVo getByopenid(String openid);
+    PPropertyUnitAndPUserVo getByopenid(String openid);
 
     /**
      * 列表查询
@@ -42,4 +42,5 @@ public interface IPUserService extends IService<PUser> {
      */
     ResponseResult edit(PUser pUser);
 
+    ResponseResult authentication(PUser pUser);
 }

@@ -79,17 +79,17 @@ public class SysUserInfoVo {
     @TableField("salary")
     private BigDecimal salary;
 
-//
-//    @TableField("hire_date")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-//    private LocalDateTime hireDate;
-//
-//
-//    @TableField("termination_date")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-//    private LocalDateTime terminationDate;
+
+    @TableField("hire_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime hireDate;
+
+
+    @TableField("termination_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime terminationDate;
 
     
     @TableField("work_location")
@@ -100,30 +100,30 @@ public class SysUserInfoVo {
     private String loginIp;
 
     
-//    @TableField("login_date")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-//    private LocalDateTime loginDate;
+    @TableField("login_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime loginDate;
 
     
-//    @TableField("create_by")
-//    private String createBy;
-//
-//
-//    @TableField("create_time")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-//    private LocalDateTime createTime;
-//
-//
-//    @TableField("update_by")
-//    private String updateBy;
-//
-//
-//    @TableField("update_time")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-//    private LocalDateTime updateTime;
+    @TableField("create_by")
+    private String createBy;
+
+
+    @TableField("create_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime createTime;
+
+
+    @TableField("update_by")
+    private String updateBy;
+
+
+    @TableField("update_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime updateTime;
 
     
     @TableField("remark")

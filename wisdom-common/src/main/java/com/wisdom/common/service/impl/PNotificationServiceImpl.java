@@ -40,6 +40,10 @@ public class PNotificationServiceImpl extends ServiceImpl<PNotificationMapper, P
         queryWrapper.eq(StringUtils.hasText(pNotificationDTO.getNotificationType()), PNotification::getNotificationType, pNotificationDTO.getNotificationType());
         queryWrapper.eq(pNotificationDTO.getPropertyId() != null, PNotification::getPropertyId, pNotificationDTO.getPropertyId());
 
+        // 在这里添加对 target_id 的判断
+        if (pNotificationDTO.getTargetIds() != null && !pNotificationDTO.getTargetIds().isEmpty()) {
+            queryWrapper.in(PNotification::getTargetId, pNotificationDTO.getTargetIds());
+        }
         // queryWrapper.like(StringUtils.hasText(pNotificationDTO.getPostCode()), PNotification::getPostCode, pNotificationDTO.getPostCode());
        // queryWrapper.like(StringUtils.hasText(pNotificationDTO.getPostName()), PNotification::getPostName, pNotificationDTO.getPostName());
         //添加按起始时间和结束时间查询条件（仅在不为null时添加）

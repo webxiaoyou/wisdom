@@ -1,15 +1,19 @@
 package com.wisdom.web.controller.system;
 
 import cn.dev33.satoken.annotation.SaIgnore;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.wisdom.common.domain.ResponseResult;
 
-import com.wisdom.common.domain.entity.SysMenu;
-import com.wisdom.common.domain.entity.SysUser;
+import com.wisdom.common.domain.dto.PRepairDTO;
+import com.wisdom.common.domain.entity.*;
 import com.wisdom.common.domain.model.LoginBody;
 import com.wisdom.common.domain.model.LoginUser;
 import com.wisdom.common.enums.AppHttpCodeEnum;
 import com.wisdom.common.exception.SystemException;
 import com.wisdom.common.helper.LoginHelper;
+import com.wisdom.common.service.PComplaintSuggestionService;
+import com.wisdom.common.service.PPropertyUnitService;
+import com.wisdom.common.service.PRepairService;
 import com.wisdom.common.utils.BeanCopyUtils;
 import com.wisdom.system.domain.entity.SysUserRole;
 import com.wisdom.system.domain.vo.AdminUserInfoVo;
@@ -25,7 +29,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -47,7 +52,11 @@ public class SysLoginController {
 
     private final ISysUserRoleService sysUserRoleService;
 
+    private final PRepairService pRepairService;
 
+    private final PPropertyUnitService pPropertyUnitService;
+
+    private final PComplaintSuggestionService pComplaintSuggestionService;
 
     /**
      * 登录方法
@@ -115,5 +124,53 @@ public class SysLoginController {
         return loginService.logout();
     }
 
+    /**
+     * 控制台内容
+     *
+     * @return 用户路由信息
+     */
+    @GetMapping("/getIndex")
+    public ResponseResult getindex() {
+        // 获取当前登录用户的ID
+        Long userId = LoginHelper.getUserId();
+        LoginUser loginUser = LoginHelper.getLoginUser();
+        // 要检测是否包含 ['admin', 'text']
+        //业主信息
+        List<PPropertyUnit> propertyUnit =new ArrayList<>();
+        //获取报修信息
+        List<String> rolesToCheck = Arrays.asList("superAdmin","admin");
+        LambdaQueryWrapper<PRepair> queryWrapper = new LambdaQueryWrapper<>();
+        LambdaQueryWrapper<PComplaintSuggestion> querySuggestionWrapper = new LambdaQueryWrapper<>();
+        querySuggestionWrapper.eq( PComplaintSuggestion::getStatus, "1");
+        if (loginUser.getRolePermission().stream().anyMatch(rolesToCheck::contains)){
+            queryWrapper.eq(loginUser.getDeptId()!=null, PRepair::getPropertyId, loginUser.getDeptId());
+            queryWrapper.ne(PRepair::getStatus, "2");
+            LambdaQueryWrapper<PPropertyUnit> queryUnitWrapper = new LambdaQueryWrapper<>();
+            queryUnitWrapper.eq(PPropertyUnit::getAuthenticationStatus,"1");
+            queryUnitWrapper.eq(PPropertyUnit::getDelFlag,"0");
+            propertyUnit = pPropertyUnitService.list(queryUnitWrapper);
+        }else{
+            // 根据实际需求添加查询条件
+            queryWrapper.eq(loginUser.getDeptId()!=null, PRepair::getPropertyId, loginUser.getDeptId());
+            queryWrapper.eq( PRepair::getStatus, "1");
+            queryWrapper.eq(loginUser.getId()!=null, PRepair::getHandlerId, loginUser.getId());
+            querySuggestionWrapper.eq(loginUser.getDeptId()!=null, PComplaintSuggestion::getPropertyId, loginUser.getDeptId());
 
+        }
+        List<PRepair> PRepairList = pRepairService.list(queryWrapper);
+        List<PComplaintSuggestion> suggestionList = pComplaintSuggestionService.list(querySuggestionWrapper);
+        Map<Object, Object> map = new HashMap<>();
+        if (PRepairList != null && !PRepairList.isEmpty()) {
+            map.put("repair", PRepairList);
+        }
+
+        if (propertyUnit != null && !propertyUnit.isEmpty()) {
+            map.put("propertyUnit", propertyUnit);
+        }
+
+        if (suggestionList != null && !suggestionList.isEmpty()) {
+            map.put("suggestion", suggestionList);
+        }
+        return ResponseResult.okResult(map);
+    }
 }

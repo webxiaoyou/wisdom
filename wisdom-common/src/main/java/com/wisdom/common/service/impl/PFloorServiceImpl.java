@@ -1,6 +1,7 @@
 package com.wisdom.common.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wisdom.common.domain.entity.PProperty;
 import com.wisdom.common.mapper.PFloorMapper;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -11,7 +12,11 @@ import com.wisdom.common.enums.AppHttpCodeEnum;
 import com.wisdom.common.domain.entity.PFloor;
 import com.wisdom.common.domain.dto.PFloorDTO;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.wisdom.common.service.PFloorService;
 import org.springframework.util.StringUtils;
 
@@ -119,5 +124,24 @@ public List<PFloor> getNe(Long floorId) {
     public ResponseResult getBuildingId(Long buildingId) {
         List<PFloor> floors = baseMapper.getbuildingId(buildingId);
         return ResponseResult.okResult(floors);
+    }
+
+    @Override
+    public ResponseResult selectDictAll(Long buildingId) {
+        LambdaQueryWrapper<PFloor> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(buildingId != null,PFloor::getBuildingId,buildingId);;
+
+        // 使用 Map 重写键
+        List<Map<String, Object>> list = this.listMaps(queryWrapper).stream()
+                .map(map -> {
+                    // 只保留需要的字段，并重命名为"value"和"label"
+                    Map<String, Object> resultMap = new HashMap<>();
+                    resultMap.put("value", map.get("floor_id"));
+                    resultMap.put("label", map.get("floor_number"));
+                    return resultMap;
+                })
+                .collect(Collectors.toList());
+
+        return ResponseResult.okResult(list);
     }
 }

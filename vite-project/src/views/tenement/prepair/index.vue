@@ -51,6 +51,8 @@
       {{ getUserDataById(id).postName }}
     </p>
   </a-modal>
+  <Drawer :opens="open" :columns="drawerColumns" @close="rowDrawerClose" :data="DetailData" :distList="distList" ></Drawer>
+  <mrepair v-model:opens="MPopens" :columns="MRcolumns" :data="RepairList" @ok="toAllot"></mrepair>
 </template>
 
 <script setup lang="ts" name="prepair">
@@ -62,6 +64,7 @@ import { useUserDictData } from '@/hooks/dicts';
 import { Dayjs } from 'dayjs';
 import index_table from './components/IndexTable.vue';
 import PIndexAddUp from './components/pindexAddUp.vue';
+import mrepair from './components/MRepair.vue';
 import { useUserStore } from '@/store/modules/user';
 // import IndexRowDrawer from './components/IndexRowDrawer.vue';
 // import IndexAddUp from './components/IndexAddUp.vue';
@@ -96,6 +99,7 @@ const columns: TableColumnType[] = [
   {
     title: '报修描述',
     dataIndex: 'description',
+    ellipsis: true,
   },
   {
     title: '报修状态',
@@ -112,6 +116,83 @@ const columns: TableColumnType[] = [
   },
 
 ];
+// 详情展示
+const drawerColumns: TableColumn[] = [
+{
+    title: '编号',
+    dataIndex: 'repairId',
+  },
+  {
+    title: '物业小区',
+    dataIndex: 'propertyId',
+    isFun: true,
+  },
+  
+  {
+    title: '栋数',
+    dataIndex: 'buildingId',
+    isFun: true,
+
+  },
+
+  {
+    title: '楼层房间',
+    dataIndex: 'floorId',
+    isFun: true,
+
+  },
+  {
+    title: '报修描述',
+    dataIndex: 'description',
+  },
+  {
+    title: '报修状态',
+    dataIndex: 'status',
+  },
+  {
+    title: '报修用户',
+    dataIndex: 'userId',
+    isFun: true,
+  },
+  {
+    title: '图片描述地址',
+    dataIndex: 'imageUrls',
+  },
+]
+
+//弹出框选择的表格内容
+const MRcolumns: TableColumnType[] = [
+  {
+    title: '用户编号',
+    dataIndex: 'id',
+    width: '6%',
+  },
+  {
+    title: '用户账户',
+    dataIndex: 'account',
+  },
+  {
+    title: '用户名称',
+    dataIndex: 'name',
+  },
+
+  {
+    title: '职位',
+    dataIndex: 'position',
+  },
+  {
+    title: '手机号码',
+    dataIndex: 'phone',
+  },
+  {
+    title: '状态',
+    dataIndex: 'state',
+  },
+  {
+    title: '创建时间',
+    dataIndex: 'createTime',
+  },
+];
 // 非单个禁用
 const single = ref(true)
 // 非多个禁用
@@ -120,19 +201,32 @@ const multiple = ref(true)
 onMounted(() => {
   list();
   dictList();
+  GetPbuildingDictlist();
+  getPfloorDictlist();
+  GetUnitDictlists();
+  getRepairList();
   if(userStore?.userInfo?.deptId){
     GetUnitDictlist();
   }
 })
 
+const MPopens=ref<boolean>(false);
 // 请求数据
 let formState: UnwrapRef<PRepair> = reactive({
   status: null,
   createTime: null,
   updateTime: null,
+  handlerId:userStore?.roles.includes('repair')?userStore?.userInfo?.id:null,
   pageNum: 1,
   pageSize: 20,
 });
+// 请求数据
+let RepairState: UnwrapRef<search> = reactive({
+  pageNum: 1,
+  pageSize: 20,
+  position:'repair'
+});
+
 
 //搜索输入框内容
 const searchColumns = ref([
@@ -258,6 +352,9 @@ let DetailData = ref<PRepair>({}); //详情数据
 let openAddUp = ref<boolean>(false); //详情抽屉
 let AddUpTitle = ref('新增')
 let listData = ref<any>({})  //表单内容
+let RepairList = ref<any>({})  //表单内容
+
+  
 const pageSizeOptions = ref<string[]>(['10', '20', '40', '100', '200']); // 表格分页
 
 //搜索表单内容
@@ -307,6 +404,12 @@ const list = async () => {
   const { data } = await API.tmt_prepair_list(requestData)
   listData.value = data
 }
+//获取维修人员信息
+const getRepairList = async () => {
+  const formStates = { ...RepairState }
+  const { data } = await API.sys_user_list(formStates)
+  RepairList.value = data
+}
 // 查询业主信息
 const GetUnitDictlist = async () => {
   // 创建一个新的对象，排除 dateRange 字段
@@ -315,6 +418,14 @@ const GetUnitDictlist = async () => {
     propertyId:userStore?.userInfo?.deptId ?userStore?.userInfo?.deptId:formState.propertyId
   })
   searchColumns.value[1].options  = data.data
+}
+// 查询业主信息
+const GetUnitDictlists = async () => {
+  // 创建一个新的对象，排除 dateRange 字段
+  const data: any = await API.tmt_pproperty_unit_dict_list({
+    isBuilding: true,
+  })
+  distList.value.unit_dict = data.data
 }
 
 // 查询小区字典详情
@@ -328,6 +439,19 @@ const dictList = async () => {
    
   }
 }
+//事件存放 查询楼栋信息
+const GetPbuildingDictlist = async () => {
+  // 创建一个新的对象，排除 dateRange 字段
+  const data: any = await API.tmt_pbuilding_dict_id()
+  distList.value.pbuilding_dict = data.data
+}
+//事件存放 查询楼栋信息
+const getPfloorDictlist = async () => {
+  // 创建一个新的对象，排除 dateRange 字段
+  const data: any = await API.tmt_pfloor_dict_id()
+  distList.value.pfloorId_dict = data.data
+}
+
 // 删除操作
 const onDels = async (id: Number[]) => {
   if (id.length >= 1) {
@@ -365,21 +489,48 @@ const onDetail = async (id: number) => {
     });
   }
 }
-
+let queryId=ref<number>(null);
 //查询详情  表格操作按键操作
-const onQuery = async (id: number, status: string) => {
-
+const onQuery = async (id: number, status: string,remark: string) => {
+  queryId.value=null
   if (status === 'up') {
     AddUpTitle.value = '编辑'
     await onDetail(id)
     openAddUp.value = true
   } else if (status === 'del') {
     onDels([id])
-  } else {
+  } else if (status === 'allot') {
+    MPopens.value=true
+    queryId.value=id
+   } else if (status === 'upSt') {
+    let data={
+      repairId: id,
+      remarks:remark
+    }
+    onUpdate(data)
+   }else if (status === 'succ') {
+
+    let data={
+      repairId: id,
+      status:'2',
+      handledAt:dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')
+    }
+    onUpdate(data)
+   }else {
     await onDetail(id)
     open.value = true
   }
 
+}
+
+const toAllot = (item: any) => {
+  console.log(item)
+  let data={
+    repairId: queryId.value,
+    handlerId:item.id,
+    status:'1',
+  }
+  onUpdate(data)
 }
 
 //新增或者编辑

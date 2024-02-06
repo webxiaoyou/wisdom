@@ -1,5 +1,6 @@
 package com.wisdom.common.utils.redis;
 
+import com.wisdom.common.domain.entity.PVisitorInvitation;
 import com.wisdom.common.utils.spring.SpringUtils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -485,5 +487,59 @@ public class RedisUtils {
     public static Boolean hasKey(String key) {
         RKeys rKeys = CLIENT.getKeys();
         return rKeys.countExists(key) > 0;
+    }
+
+    /**
+     * 创建邀请码并存储到Redis
+     *
+     * @param key             Redis键
+     * @param ownerId         业主ID
+     * @param authorizedDoors 授权的门ID数组（以逗号分隔的字符串）
+     * @param durationHours   权限时长（小时）
+     * @return 生成的邀请码
+     */
+    public static String createInvitationCode(String key, Long ownerId, String authorizedDoors, int durationHours) {
+        // 生成随机邀请码，确保唯一性
+        String invitationCode = generateUniqueInvitationCode();
+
+        // 构建邀请信息对象
+        PVisitorInvitation invitation = new PVisitorInvitation();
+        invitation.setOwnerId(ownerId);
+        invitation.setAuthorizedDoors(authorizedDoors);
+        invitation.setDurationHours(durationHours);
+        invitation.setInvitationCode(invitationCode);
+        invitation.setInvitationStatus("0"); // 设置初始状态为待生效
+
+        // 存储邀请信息到Redis
+        setCacheObject(key + ":" + invitationCode, invitation, Duration.ofHours(durationHours));
+
+        return invitationCode;
+    }
+
+    /**
+     * 生成唯一的邀请码
+     *
+     * @return 唯一的邀请码
+     */
+    private static String generateUniqueInvitationCode() {
+        // 假设邀请码是 5 位数的数字
+        String invitationCode;
+        do {
+            invitationCode = String.format("%05d", ThreadLocalRandom.current().nextInt(100000));
+        } while (isInvitationCodeExists(invitationCode));
+
+        return invitationCode;
+    }
+
+    /**
+     * 检查邀请码是否已存在
+     *
+     * @param invitationCode 邀请码
+     * @return 是否已存在
+     */
+    private static boolean isInvitationCodeExists(String invitationCode) {
+        // 假设你的邀请码存储在 Redis 的 key 中
+        String key = "your:key:prefix:" + invitationCode;
+        return isExistsObject(key);
     }
 }

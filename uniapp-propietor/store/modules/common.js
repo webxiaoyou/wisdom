@@ -3,6 +3,7 @@ import { setCookie,getCookie } from '@/plugins/cookie';
 export const state = {
 	PrimaryColor: '#2979ff', //主题色
     loginPopupShow:false,//控制是否打开登录弹窗
+	authenticationModalShow:false,//控制是否打开模态框弹窗
 	showWxLogin:false,//微信授权登录弹窗-新2022-10
     loadingShow:false,//加载动画
     chatScenesInfo:{},//扫码参数
@@ -50,6 +51,9 @@ export const mutations = {
     setLoginPopupShow(state, data){
         state.loginPopupShow = data
     },
+	setAuthenticationModalShow(state, data){
+		 state.authenticationModalShow = data
+	},
 	setShowWxLogin(state, data){
 	    state.showWxLogin = data
 	},

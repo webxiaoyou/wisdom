@@ -7,14 +7,17 @@ import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.ObjectUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.wisdom.common.constants.Constants;
 import com.wisdom.common.domain.ResponseResult;
 import com.wisdom.common.domain.dto.LoginDTO;
 import com.wisdom.common.domain.dto.PUserDto;
+import com.wisdom.common.domain.entity.PPropertyUnit;
 import com.wisdom.common.domain.entity.PUser;
 import com.wisdom.common.domain.entity.WxUser;
 import com.wisdom.common.domain.model.LoginUser;
 import com.wisdom.common.domain.vo.PLoginVo;
+import com.wisdom.common.domain.vo.PPropertyUnitAndPUserVo;
 import com.wisdom.common.domain.vo.PUserVo;
 import com.wisdom.common.enums.DeviceType;
 import com.wisdom.common.enums.UserType;
@@ -106,7 +109,7 @@ public class WxMaLoginController extends ResponseResult {
 
         WxMaJscode2SessionResult session = getSession(loginDTO.getAppid(), loginDTO.getCode());
         String openid = session.getOpenid();
-        PUserVo pUserVo = ipUserService.getByopenid(openid);
+        PPropertyUnitAndPUserVo pUserVo = ipUserService.getByopenid(openid);
 
         if (ObjectUtil.isNull(pUserVo)) {
             // 静默登录用户不存在，返回错误信息给前端
@@ -160,7 +163,7 @@ public class WxMaLoginController extends ResponseResult {
         wxUser.setUserType(UserType.APP_USER.getUserType()); // app端用户
         LoginHelper.loginByDevice(wxUser, DeviceType.XCX);
 
-        return okResult(new PLoginVo(StpUtil.getTokenValue(), BeanCopyUtils.copyBean(pUser, PUserVo.class)), "登录成功");
+        return okResult(new PLoginVo(StpUtil.getTokenValue(), BeanCopyUtils.copyBean(pUser, PPropertyUnitAndPUserVo.class)), "登录成功");
     }
     /**
      * 登录结束后自动更新图片接口

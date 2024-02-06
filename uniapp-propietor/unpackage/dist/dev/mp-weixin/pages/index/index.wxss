@@ -24,30 +24,29 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.name.data-v-57280228 {
-  padding: 24rpx;
-  font-size: 32rpx;
-  font-weight: bold;
+.itemBox.data-v-57280228 {
+  background: #fff;
+  padding: 0 24rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
 }
-.link.data-v-57280228 {
-  font-size: 24rpx;
-  color: #007AFF;
+.itemBox .titleBox.data-v-57280228 {
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid #eee;
 }
-.cell-group .cell-item.data-v-57280228 {
-  border-bottom: 2rpx solid #eee;
-  background-color: #fff;
-  border-radius: 10rpx;
-  padding: 20rpx 24rpx;
-}
-.cell-group .cell-item .title.data-v-57280228 {
-  color: #333;
+.itemBox .titleBox .title.data-v-57280228 {
   font-size: 28rpx;
-  padding: 0 10rpx;
   font-weight: bold;
-  margin: 0;
 }
-.cell-group .cell-item .more.data-v-57280228 {
+.itemBox .titleBox .word.data-v-57280228 {
   font-size: 24rpx;
   color: #999;
+}
+.itemBox .grid-text.data-v-57280228 {
+  font-size: 24rpx;
+  color: #333;
+  padding-top: 10rpx;
 }
 

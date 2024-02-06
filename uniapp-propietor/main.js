@@ -12,6 +12,10 @@ Vue.prototype.$store = store;
 //判断是否登录
 import { judgeLogin } from '@/config/login';
 Vue.prototype.judgeLogin = judgeLogin;
+//判断是否认证
+import { judgeAuthentication } from '@/config/login';
+Vue.prototype.judgeAuthentication = judgeAuthentication;
+
 
 // #ifdef APP
 // 自定义showModal组件

@@ -21,7 +21,7 @@
         编辑
       </a-button> -->
       <a-button type="primary" danger class="flex-row flex-align-center m-b3" :disabled="multiple"
-        v-hasPermi="['system:post:remove']" @click="onDel">
+        v-hasPermi="['tenement:pcomplaint_suggestion:remove']" @click="onDel">
         <template #icon>
           <Icon icon="ic:outline-delete" />
         </template>
@@ -68,7 +68,7 @@ import dayjs from 'dayjs';
 import { convertToNumber, calculatePageCount } from '@/hooks/publicFunction';
 import type { TableColumnType } from 'ant-design-vue';
 let selectedRows = ref([]);  //所选id
-let { distList } = useUserDictData(['sys_normal_disable']);  //字典数据
+let { distList } = useUserDictData(['sys_normal_disable','is_suggest']);  //字典数据
 const userStore:any = useUserStore();
 //表格内容
 const columns: TableColumnType[] = [
@@ -90,10 +90,14 @@ const columns: TableColumnType[] = [
     dataIndex: 'content',
     ellipsis:true
   },
-  // {
-  //   title: '状态',
-  //   dataIndex: 'status',
-  // },
+  {
+    title: '类型',
+    dataIndex: 'isSuggest',
+  },
+  {
+    title: '状态',
+    dataIndex: 'status',
+  },
   // {
   //   title: '创建时间',
   //   dataIndex: 'createTime',
@@ -141,12 +145,12 @@ const searchColumns = ref([
     options: [],
   },
   {
-    title: '报修用户',
+    title: '类型',
     dataType: 'select',
-    keyField: 'value',
-    labelField: 'label',
-    name: 'userId',
-    search:true,
+    keyField: 'dictValue',
+    labelField: 'dictLabel',
+    name: 'isSuggest',
+    // search:true,
     // defaultValue:userStore?.userInfo?.deptId,
     // disabled:userStore?.userInfo?.deptId,
     options: [],
@@ -207,12 +211,12 @@ const pageSizeOptions = ref<string[]>(['10', '20', '40', '100', '200']); // 表�
 const handleChildSubmit = (submittedData) => {
   formState.pageNum = 1;
   list()
-   if(formState.propertyId){
-    GetUnitDictlist();
-   }else{
-    formState.userId=null
-    searchColumns.value[1].options  = []
-   }
+  //  if(formState.propertyId){
+  //   GetUnitDictlist();
+  //  }else{
+  //   formState.userId=null
+  //   searchColumns.value[1].options  = []
+  //  }
 };
 
 //删除按键操作
@@ -236,7 +240,8 @@ watch(
   () => distList.value, // 监听 distList.value 的变化防止数据未加载
   (newValue, oldValue) => {
     // 在 distList 变化时执行的逻辑
-    searchColumns.value[2].options = distList.value.sys_normal_disable
+    searchColumns.value[1].options = distList.value.is_suggest
+    
     FormColumns.value[3].options = distList.value.sys_normal_disable
   }
 );

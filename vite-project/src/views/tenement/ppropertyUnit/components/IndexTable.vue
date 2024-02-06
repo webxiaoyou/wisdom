@@ -14,7 +14,7 @@
       </template>
 
       <template v-if="column.dataIndex === 'authenticationStatus'">
-        <a-tag :color="text == 0 ? 'warning' : text == 1 ? 'success' : 'error'">{{ getDictLabel(distList, 'audit_status',
+        <a-tag :color="text == 0 ? 'warning' : text == 1 ? 'success' : text == 3 ? 'warning': 'error'">{{ getDictLabel(distList, 'audit_status',
           text) }}</a-tag>
       </template>
       <!-- <template v-if="column.dataIndex === 'state'">

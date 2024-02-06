@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+
 /**
  * 物业通知表(PNotification)内容返回实体类表
  *
@@ -54,7 +56,13 @@ public class PNotificationVo implements Serializable {
     */           
     @TableField("target_id") 
     private Long targetId;
-            
+
+    /**
+     * 接收对象IDS（楼栋ID、楼层ID、用户ID等）
+     */
+    @TableField(exist = false)
+    private List<Long> targetIds;
+
     /** 
     * 通知标题 
     */           

@@ -34,7 +34,7 @@ public class PCommunityActivityController {
      * @param pCommunityActivityDTO 查询条件
      * @return 列表结果
      */
-    @SaCheckPermission("community:pcommunity_activity:list")
+//    @SaCheckPermission("community:pcommunity_activity:list")
     @GetMapping("/list")
     public ResponseResult selectAll(PCommunityActivityDTO pCommunityActivityDTO) {
         return pCommunityActivityService.selectAll(pCommunityActivityDTO);
@@ -46,7 +46,7 @@ public class PCommunityActivityController {
      * @param activityId 主键ID
      * @return 详情结果
      */
-    @SaCheckPermission("community:pcommunity_activity:query")
+//    @SaCheckPermission("community:pcommunity_activity:query")
     @GetMapping(value = "/{activityId}")
     public ResponseResult getInfo(@PathVariable Long activityId) {
         PCommunityActivity byId = pCommunityActivityService.getById(activityId);

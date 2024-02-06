@@ -44,5 +44,7 @@ public interface PFloorService extends IService<PFloor> {
      * @return
      */
     ResponseResult getBuildingId(Long buildingId);
+
+    ResponseResult selectDictAll(Long buildingId);
 }
 

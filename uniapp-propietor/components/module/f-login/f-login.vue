@@ -269,7 +269,6 @@
 						    // that.isLoading = false
 						// })
 						postUserLogin(httpData).then(r => {
-							debugger
 							// 储存登录信息
 							if (r.code === 200) {
 								let userInfo = {

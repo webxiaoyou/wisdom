@@ -45,6 +45,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public ResponseResult selectAll(SysUser userInfoVo) {
         LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(StringUtils.isNotEmpty(userInfoVo.getStatus()), SysUser::getStatus, userInfoVo.getStatus());
+        queryWrapper.eq(StringUtils.isNotEmpty(userInfoVo.getPosition()), SysUser::getPosition, userInfoVo.getPosition());
         queryWrapper.like(StringUtils.isNotEmpty(userInfoVo.getName()), SysUser::getName, userInfoVo.getName());
         queryWrapper.like(StringUtils.isNotEmpty(userInfoVo.getPhone()), SysUser::getPhone, userInfoVo.getPhone());
 //        添加按起始时间和结束时间查询条件（仅在不为null时添加）

@@ -87,6 +87,7 @@ function uploadFilePromise(filePath,type=1,formData={type:'image'},header) {
 		url = base.baseUrl+'/YmUpload_videoFile'
 	}
 	return new Promise((resolve, reject) => {
+		
 		let a = uni.uploadFile({
 			url: url, // 上传接口
 			filePath: filePath,

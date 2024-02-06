@@ -39,5 +39,9 @@ public interface PPropertyUnitService extends IService<PPropertyUnit> {
 
 
     ResponseResult selectDictAll(PPropertyUnitDTO pPropertyUnitDTO);
+
+    ResponseResult addEdit(PPropertyUnit pPropertyUnit);
+
+    ResponseResult getUserInfo(Long userId);
 }
 

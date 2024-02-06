@@ -9,7 +9,70 @@
       "list": [
         {
           "name": "",
-          "pathName": "pages/my/myInfo",
+          "pathName": "pages/user/set",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesPackageA/visitorInvitation/visitorInvitation",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesPackageA/visitorInvitation/visitorInvitation",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesPackageA/house/house",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/news/news",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesPackageA/repair/details",
+          "query": "repairId=10",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesPackageA/repair/details",
+          "query": "repairId=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesPackageA/repair/list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesPackageA/repair/add",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesPackageA/repair/list",
           "query": "",
           "launchMode": "default",
           "scene": null

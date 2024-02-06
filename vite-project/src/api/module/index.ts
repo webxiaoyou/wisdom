@@ -20,6 +20,8 @@ enum Api {
     AdminListDetele = '/v1.Admin/delete', //删除管理员用户
     AdminListAdd = '/v1.Admin/save', //新增管理员用户
     AdminListUpdate = '/v1.Admin/update', //编辑管理员用户
+    Index = '/getIndex', //左侧菜单
+
 }
 export const Menu = () => {
     return Axios.get(Api.Menu);
@@ -35,4 +37,7 @@ export const AdminListAdd = (data: any) => {
 };
 export const AdminListUpdate = (data: any) => {
     return Axios.post(Api.AdminListUpdate, data);
+};
+export const Index = () => {
+    return Axios.get(Api.Index);
 };

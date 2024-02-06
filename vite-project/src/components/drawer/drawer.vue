@@ -6,6 +6,11 @@
             <template v-if="column.dataIndex === 'avatar' || column.dataIndex === 'imageUrl' || column.dataIndex === 'coverUrl'">
             <a-image :width="80" :src="formData[column.dataIndex]"></a-image>
           </template>
+          <template v-if="column.dataIndex === 'imageUrls'">
+            <template v-if="formData[column.dataIndex]">
+             <a-image :width="80" :src="item" v-for="(item, index) in formData[column.dataIndex].split(',')" :key="index"></a-image>
+            </template>
+          </template>
           <template v-else-if="column.dataIndex === 'authenticated'">
             <a-tag :color="formData[column.dataIndex] == 0 ? 'success' :formData[column.dataIndex] == 1? 'error': 'warning'"> {{ getDictLabel(props.distList, 'puser_authenticated', formData[column.dataIndex]) }}</a-tag>
           </template> 
@@ -69,6 +74,12 @@ readOnly: true,  // 设置为只读模式
       return getDictLabel(props.distList, 'sys_normal_disable', value);
      } else if (column.dataIndex === 'propertyId') {
       return getSingleDictLabel(props.distList, 'pproperty_dict', value);
+     }
+     else if (column.dataIndex === 'buildingId') {
+      return getSingleDictLabel(props.distList, 'pbuilding_dict', value);
+     }
+     else if (column.dataIndex === 'floorId') {
+      return getSingleDictLabel(props.distList, 'pfloorId_dict', value);
      }
     else {
       return value;

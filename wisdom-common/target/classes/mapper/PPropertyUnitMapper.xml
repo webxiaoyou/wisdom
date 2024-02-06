@@ -48,6 +48,9 @@
         <if test="propertyId != null">
             AND property_id = #{propertyId}
         </if>
+        <if test="ownerId != null">
+            AND owner_id = #{ownerId}
+        </if>
 
     </select>
     <select id="selectUserAndPUOne" resultType="com.wisdom.common.domain.vo.PPropertyUnitAndPUserVo">

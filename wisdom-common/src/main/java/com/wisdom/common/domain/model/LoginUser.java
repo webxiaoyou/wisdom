@@ -1,5 +1,6 @@
 package com.wisdom.common.domain.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.wisdom.common.domain.dto.RoleDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -91,6 +92,10 @@ public class LoginUser implements Serializable {
      * 角色对象
      */
     private List<RoleDTO> roles;
+
+    //    查询的时候告诉它不要查询这个字段
+    @TableField(exist = false)
+    private List<Long> roleIds;
 
     /**
      * 数据权限 当前角色ID

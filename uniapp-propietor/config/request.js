@@ -65,7 +65,7 @@ uni.$u.http.interceptors.response.use(async (response) => { /* 对响应成功�
     const custom = response.config?.custom
 	// code参数根据后台定义自行更改
     // code:  200、请求成功 -1、请求成功，没有更多参数 2、被迫下线重新登录、
-    if(data.code == 200 || data.code == -1){
+    if(data.code == 200 || data.code == 500){
         if(data.code == -1){
             data.data = []
         }
@@ -74,7 +74,7 @@ uni.$u.http.interceptors.response.use(async (response) => { /* 对响应成功�
         }else{
             return data === undefined ? {} : data
         }
-    }else if(data.code == 2){//被迫下线/token失效
+    }else if(data.code == 401){//被迫下线/token失效
 		// token无感刷新
 		// try {
 		// 	// 重新请求token

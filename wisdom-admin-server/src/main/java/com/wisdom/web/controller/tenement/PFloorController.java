@@ -38,6 +38,15 @@ public class PFloorController {
     }
 
     /**
+     * 字典列表
+     * @param buildingId
+     * @return
+     */
+    @GetMapping("/dict/list")
+    public ResponseResult selectAll(@RequestParam(value = "buildingId", required = false) Long buildingId) {
+        return pFloorService.selectDictAll(buildingId);
+    }
+    /**
      * 根据ID获取详情
      *
      * @param floorId 主键ID

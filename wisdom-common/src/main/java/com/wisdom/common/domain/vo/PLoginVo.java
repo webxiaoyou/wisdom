@@ -17,8 +17,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class PLoginVo {
 
-    
+
     private String token;
-    private PUserVo pUserVo;
+//    private PUserVo pUserVo;
+    private PPropertyUnitAndPUserVo pUserVo;
 //    private String isFistTime;
 }

@@ -133,4 +133,10 @@ public interface UserConstants {
      * 删除状态（0正常 1停用）
      */
     String DEL_STATUS_NORMAL= "0";
+
+
+    /**
+     * 物业认证状态（0未认证 1已认证 2认证未通过）
+     */
+    String AUTHENTICATION_SU_STATUS= "1";
 }

@@ -13,6 +13,7 @@ import com.wisdom.common.domain.dto.PComplaintSuggestionDTO;
 
 import java.util.List;
 import com.wisdom.common.service.PComplaintSuggestionService;
+import org.springframework.util.StringUtils;
 
 /**
  * 投诉建议信息表(PComplaintSuggestion)表服务实现类
@@ -33,8 +34,9 @@ public class PComplaintSuggestionServiceImpl extends ServiceImpl<PComplaintSugge
     public ResponseResult selectAll(PComplaintSuggestionDTO pComplaintSuggestionDTO) {
         LambdaQueryWrapper<PComplaintSuggestion> queryWrapper = new LambdaQueryWrapper<>();
         // 根据实际需求添加查询条件
-       // queryWrapper.eq(StringUtils.hasText(pComplaintSuggestionDTO.getStatus()), PComplaintSuggestion::getStatus, pComplaintSuggestionDTO.getStatus());
-       // queryWrapper.like(StringUtils.hasText(pComplaintSuggestionDTO.getPostCode()), PComplaintSuggestion::getPostCode, pComplaintSuggestionDTO.getPostCode());
+        queryWrapper.eq(pComplaintSuggestionDTO.getPropertyId()!=null, PComplaintSuggestion::getPropertyId, pComplaintSuggestionDTO.getPropertyId());
+        queryWrapper.eq(pComplaintSuggestionDTO.getIsSuggest()!=null, PComplaintSuggestion::getIsSuggest, pComplaintSuggestionDTO.getIsSuggest());
+        // queryWrapper.like(StringUtils.hasText(pComplaintSuggestionDTO.getPostCode()), PComplaintSuggestion::getPostCode, pComplaintSuggestionDTO.getPostCode());
        // queryWrapper.like(StringUtils.hasText(pComplaintSuggestionDTO.getPostName()), PComplaintSuggestion::getPostName, pComplaintSuggestionDTO.getPostName());
         //添加按起始时间和结束时间查询条件（仅在不为null时添加）
         if (pComplaintSuggestionDTO.getParams() != null ) {
@@ -69,11 +71,11 @@ public List<PComplaintSuggestion> getNe(Long id) {
     */
     @Override
     public ResponseResult add(PComplaintSuggestion pComplaintSuggestion) {
-        List<PComplaintSuggestion> existingData = getNe(pComplaintSuggestion.getId());
-
-        if (!existingData.isEmpty()) {
-            return ResponseResult.errorResult(AppHttpCodeEnum.DATA_ERROR);
-        }
+//        List<PComplaintSuggestion> existingData = getNe(pComplaintSuggestion.getId());
+//
+//        if (!existingData.isEmpty()) {
+//            return ResponseResult.errorResult(AppHttpCodeEnum.DATA_ERROR);
+//        }
 
         boolean success = save(pComplaintSuggestion);
 
@@ -92,11 +94,11 @@ public List<PComplaintSuggestion> getNe(Long id) {
     */
     @Override
     public ResponseResult edit(PComplaintSuggestion pComplaintSuggestion) {
-         List<PComplaintSuggestion> existingData = getNe(pComplaintSuggestion.getId());
-
-        if (!existingData.isEmpty()) {
-            return ResponseResult.errorResult(AppHttpCodeEnum.DATA_NOT_NULL);
-        }
+//         List<PComplaintSuggestion> existingData = getNe(pComplaintSuggestion.getId());
+//
+//        if (!existingData.isEmpty()) {
+//            return ResponseResult.errorResult(AppHttpCodeEnum.DATA_NOT_NULL);
+//        }
 
         PComplaintSuggestion originalData = getById(pComplaintSuggestion.getId());
 

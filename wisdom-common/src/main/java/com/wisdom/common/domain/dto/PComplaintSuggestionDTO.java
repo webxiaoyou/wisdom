@@ -77,5 +77,10 @@ public class PComplaintSuggestionDTO extends BaseEntity {
     */           
     @TableField(fill = FieldFill.INSERT)
     private String updateBy;
-       
+
+    /**
+     * 投诉/建议（0投诉 1建议）
+     */
+    @TableField("is_suggest")
+    private String isSuggest;
 }
