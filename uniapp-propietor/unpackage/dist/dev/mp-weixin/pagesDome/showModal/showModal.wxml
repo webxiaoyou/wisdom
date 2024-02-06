@@ -1,2 +1,0 @@
-<view class="page"><view class="title">此组件是下载其他作者组件，改编布局且可以全局使用showModal</view><view class="text">注意：此组件只支持app</view><view class="text">解决安卓原生showModal很难看且'确定'在左边</view><view class="text">请main.js全局引入,才能生效</view><view class="text">import f_show_modal from '@/components/module/show_modal/f_show_modal.js'
-        Vue.use(f_show_modal)</view><view data-event-opts="{{[['tap',[['onKnow',['$event']]]]]}}" class="btn" bindtap="__e">知道了</view><view data-event-opts="{{[['tap',[['determine',['$event']]]]]}}" class="btn red" bindtap="__e">确定</view></view>

@@ -1,1 +1,0 @@
-<view style="{{'height:'+(isFixed?height+'px':'auto')+';'}}" class="data-v-060d32f2"><view class="{{['data-v-060d32f2',(isFixed)?'statusFixed':'']}}" style="{{'top:'+(offsetTop+'rpx')+';'+('z-index:'+(zIndex)+';')+('width:'+(width=='auto'?'auto':width+'px')+';')}}" id="f__sticky"><slot></slot></view></view>

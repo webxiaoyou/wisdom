@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "车牌号输入+键盘+新能源",
-  "usingComponents": {
-    "f-car-number": "/components/module/f-car-number/f-car-number"
-  }
-}

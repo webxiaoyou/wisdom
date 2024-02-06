@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "支付",
-  "usingComponents": {
-    "u-popup": "/uni_modules/uview-ui/components/u-popup/u-popup",
-    "f-pay": "/components/module/f-pay/f-pay"
-  }
-}

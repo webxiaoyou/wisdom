@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "吸顶",
-  "usingComponents": {
-    "f-sticky": "/components/module/f-sticky/f-sticky"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "签名",
-  "usingComponents": {
-    "f-signature": "/components/module/f-signature/f-signature"
-  }
-}

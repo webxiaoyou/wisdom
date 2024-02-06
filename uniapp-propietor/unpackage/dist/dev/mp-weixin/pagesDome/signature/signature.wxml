@@ -1,1 +1,0 @@
-<view class="data-v-7069103b"><f-signature bind:getImg="__e" vue-id="c68d0faa-1" data-event-opts="{{[['^getImg',[['getImg']]]]}}" class="data-v-7069103b" bind:__l="__l"></f-signature><block wx:if="{{img}}"><image style="position:absolute;background:red;top:0;width:235rpx;z-index:10000;" src="{{img}}" mode="widthFix" class="data-v-7069103b"></image></block></view>

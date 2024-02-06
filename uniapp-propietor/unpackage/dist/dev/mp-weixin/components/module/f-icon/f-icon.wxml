@@ -1,1 +1,0 @@
-<view data-event-opts="{{[['tap',[['clickHandler',['$event']]]]]}}" class="u-icon u-flex data-v-c179bf72" bindtap="__e"><view class="{{['data-v-c179bf72',customPrefix,customPrefix+'-'+name]}}" style="{{'color:'+(color)+';'+('font-size:'+(size+'rpx')+';')+('font-weight:'+(bold?'bold':'normal')+';')}}"></view></view>

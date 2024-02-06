@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "加入购物车动画",
-  "usingComponents": {
-    "cart-animation": "/components/module/f-cartAnimation/f-cartAnimation"
-  }
-}

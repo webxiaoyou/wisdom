@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "u-keyboard": "/uni_modules/uview-ui/components/u-keyboard/u-keyboard"
-  },
-  "component": true
-}

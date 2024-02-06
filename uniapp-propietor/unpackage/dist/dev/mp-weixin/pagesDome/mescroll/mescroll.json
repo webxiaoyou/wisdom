@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "分页demo",
-  "usingComponents": {
-    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon"
-  }
-}

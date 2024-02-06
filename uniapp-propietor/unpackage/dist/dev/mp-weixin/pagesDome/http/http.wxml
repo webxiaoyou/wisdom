@@ -1,1 +1,0 @@
-<view><public-module vue-id="7767e0dd-1" bind:__l="__l"></public-module><view data-event-opts="{{[['tap',[['getShpInfoPost',['$event']]]]]}}" class="titleBtn" bindtap="__e">启用uni.$u.http.post</view><view data-event-opts="{{[['tap',[['getShpInfoGet',['$event']]]]]}}" class="titleBtn" bindtap="__e">启用uni.$u.http.get</view><view class="value">{{''+value+''}}</view></view>
