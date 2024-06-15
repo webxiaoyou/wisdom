@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "文章详情",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "u--text": "/uni_modules/uview-ui/components/u--text/u--text",
+    "u-gap": "/uni_modules/uview-ui/components/u-gap/u-gap",
+    "u-parse": "/uni_modules/uview-ui/components/u-parse/u-parse",
+    "f-navbar": "/components/module/f-navbar/f-navbar"
+  }
+}

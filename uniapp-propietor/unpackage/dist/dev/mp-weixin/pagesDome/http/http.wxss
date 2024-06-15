@@ -1,0 +1,16 @@
+
+.titleBtn{
+    margin: 24rpx;
+    width: 702rpx;
+    padding: 20rpx 24rpx;
+    background-color: #007AFF;
+    color: #fff;
+    font-size: 24rpx;
+    text-align: center;
+}
+.value{
+	margin: 24rpx;
+	color: #666;
+	font-size: 24rpx;
+}
+

@@ -1,0 +1,20 @@
+.a-steps.data-v-a1912884 {
+  width: 100%;
+  background-color: #FFFFFF;
+  padding: 40rpx 0;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+}
+.m-t-20.data-v-a1912884 {
+  padding: 40rpx;
+}
+.colors.data-v-a1912884 {
+  color: #109ffe;
+}
+.m-t-1.data-v-a1912884 {
+  margin-top: 20rpx;
+}
+.m-r-1.data-v-a1912884 {
+  margin-right: 20rpx;
+}
+

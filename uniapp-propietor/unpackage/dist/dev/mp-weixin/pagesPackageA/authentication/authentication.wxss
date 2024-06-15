@@ -1,0 +1,20 @@
+.a-steps.data-v-323045e1 {
+  width: 100%;
+  background-color: #FFFFFF;
+  padding: 40rpx 0;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+}
+.m-t-20.data-v-323045e1 {
+  margin-top: 40rpx;
+  padding: 40rpx;
+}
+.upload-container.data-v-323045e1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.data-v-323045e1 .u-form {
+  width: 100%;
+}
+

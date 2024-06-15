@@ -1,0 +1,8 @@
+.u-box.data-v-41fc2b6b {
+  width: 100%;
+  background-color: #FFFFFF;
+  padding: 40rpx 0;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+}
+

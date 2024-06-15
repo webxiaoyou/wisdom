@@ -1,0 +1,25 @@
+
+.tip{
+    padding: 32rpx;
+    font-size: 28rpx;
+    color: #666;
+}
+.item{
+    display: flex;
+    justify-content: space-between;
+}
+.btn{
+    margin: 32rpx;
+    width: 140rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    color: #fff;
+    font-size: 28rpx;
+    background-color: #007AFF;
+    border-radius: 10rpx;
+}
+.red{
+    background-color: red;
+}
+

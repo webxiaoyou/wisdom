@@ -1,0 +1,14 @@
+.a-steps.data-v-ccb186c6 {
+  width: 100%;
+  background-color: #FFFFFF;
+  padding: 40rpx 0;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+}
+.m-t-20.data-v-ccb186c6 {
+  padding: 40rpx;
+}
+.data-v-ccb186c6 .u-form {
+  width: 100%;
+}
+

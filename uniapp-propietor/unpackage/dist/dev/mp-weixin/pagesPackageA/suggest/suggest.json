@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "投诉建议",
+  "usingComponents": {
+    "u-subsection": "/uni_modules/uview-ui/components/u-subsection/u-subsection",
+    "u--form": "/uni_modules/uview-ui/components/u--form/u--form",
+    "u-form-item": "/uni_modules/uview-ui/components/u-form-item/u-form-item",
+    "u--textarea": "/uni_modules/uview-ui/components/u--textarea/u--textarea",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button"
+  }
+}

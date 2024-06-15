@@ -1,0 +1,19 @@
+.a-steps.data-v-a553b0b8 {
+  width: 100%;
+  background-color: #FFFFFF;
+  padding: 40rpx 0;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+}
+.m-t-20.data-v-a553b0b8 {
+  padding: 40rpx;
+}
+.upload-container.data-v-a553b0b8 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.data-v-a553b0b8 .u-form {
+  width: 100%;
+}
+

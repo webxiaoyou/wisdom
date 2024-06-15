@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "消息中心",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "u-empty": "/uni_modules/uview-ui/components/u-empty/u-empty",
+    "u--text": "/uni_modules/uview-ui/components/u--text/u--text",
+    "f-tabbar": "/components/module/f-tabbar/f-tabbar"
+  }
+}

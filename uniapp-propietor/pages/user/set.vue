@@ -1,0 +1,380 @@
+<template>
+	<view>
+		<public-module></public-module>
+		<view class="group">
+			<view class="cell u-flex" @click="upAvatar">
+				<view class="title u-flex-m">头像</view>
+				<image :src="userInfo.headLogo" class="avatar"></image>
+				<u-icon name="arrow-right" :size="14" color="#333"></u-icon>
+			</view>
+			<view class="cell u-flex">
+				<view class="title u-flex-m">昵称</view>
+				<view class="text">{{userInfo.nickName}}</view>
+			</view>
+			<view class="cell u-flex">
+				<view class="title u-flex-m">姓名</view>
+				<view class="text">{{userInfo.user.userName}}</view>
+			</view>
+			<!--           <view class="cell u-flex" @click="onJump('/pagesPackageA/address/address')">
+                <view class="title u-flex-m">收货地址</view>
+                <u-icon name="arrow-right" :size="14" color="#333"></u-icon>
+            </view> -->
+		</view>
+		<view class="group">
+			<!-- #ifdef MP || APP-PLUS -->
+			<view class="cell u-flex" @click="checkUpData">
+				<view class="title u-flex-m">检查更新</view>
+				<!-- #ifdef APP-PLUS -->
+				<view class="text" v-if="versionInfo.versionName">{{versionInfo.versionName}}</view>
+				<!-- #endif -->
+				<u-icon name="arrow-right" :size="14" color="#333"></u-icon>
+			</view>
+			<!-- #endif -->
+			<view class="cell u-flex" @click="getPhone">
+				<view class="title u-flex-m">手机号</view>
+				<view class="text">{{userInfo.user.tel || '去绑定'}}</view>
+				<u-icon name="arrow-right" :size="14" color="#333"></u-icon>
+				<!-- #ifdef MP-WEIXIN -->
+				<!-- 微信手机授权 -->
+				<button class="itemButton" open-type="getPhoneNumber" @getphonenumber="decryptPhoneNumber"></button>
+				<!-- #endif -->
+				<!-- #ifdef MP-ALIPAY -->
+				<!-- 支付宝手机授权 -->
+				<button class="itemButton" open-type="getAuthorize" scope="phoneNumber"
+					@getAuthorize="decryptPhoneNumber" @error="onAuthError"></button>
+				<!-- #endif -->
+			</view>
+			<!-- #ifdef APP-PLUS -->
+			<view class="cell u-flex">
+				<view class="title u-flex-m">缓存大小</view>
+				<view class="text">{{fileSizeString}}</view>
+				<!-- app删除缓存 -->
+				<view class="u-p-l-14" @tap.stop="appClearCache">
+					<u-icon name="trash" :size="20" color="#888"></u-icon>
+				</view>
+			</view>
+			<!-- #endif -->
+			<!--  <view class="cell u-flex">
+                <view class="title u-flex-m">问题反馈</view>
+                <u-icon name="arrow-right" :size="14" color="#333"></u-icon>
+            </view> -->
+			<!--            <view class="cell u-flex">
+                <view class="title u-flex-m">关于我们</view>
+                <u-icon name="arrow-right" :size="14" color="#333"></u-icon>
+            </view> -->
+		</view>
+		<view class="u-p-t-50 u-p-l-30 u-p-r-30">
+			<u-button shape="square" type="error" @click="loginOut">退出登录</u-button>
+		</view>
+	</view>
+</template>
+
+<script>
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
+	import {
+		postUserLogout,
+		getUserLoginUpAvatar
+	} from '@/config/api.js';
+	import {
+		uploadFilePromise
+	} from '@/plugins/upload/upload.js'
+	// #ifdef MP
+	import {
+		getPhoneInfo
+	} from '@/config/login';
+	import {
+		mpUpData
+	} from '@/config/common';
+	// #endif
+	// #ifdef APP-PLUS
+	import {
+		formatSize,
+		clearCache
+	} from '@/config/common';
+	import APPUpdate from '@/uni_modules/zhouWei-APPUpdate/js_sdk/appUpdate';
+	// #endif
+	export default {
+		computed: {
+			...mapState(['userInfo'])
+		},
+		data() {
+			return {
+				fileSizeString: '0B', //App缓存大小
+				versionInfo: {}, //版本信息
+				phoneNum: this.$store.state.userInfo.user.tel || '',
+				avatar: require('@//static/logo.png')
+			}
+		},
+		onLoad() {
+			// #ifdef APP-PLUS
+			this.appFormatSize() //计算app缓存大小
+			this.getCurrentNo() //获取版本号
+			// #endif
+
+		},
+		onShow() {
+			this.bindPhoneSuccess()
+		},
+		methods: {
+			...mapMutations(['emptyUserInfo', 'setUserInfo', 'userInfo', 'setHeadLogo']),
+			onJump(url) {
+				uni.navigateTo({
+					url: url
+				});
+			},
+			loginOut() {
+				var that = this
+				uni.showModal({
+					title: '退出登录',
+					content: '你确定退出登录吗？',
+					success(res) {
+						if (res.confirm) {
+							postUserLogout().then(res => {
+								that.emptyUserInfo();
+								setTimeout(() => {
+									uni.navigateBack({
+										delta: 1
+									})
+								}, 500)
+							}).catch(e => {
+								that.emptyUserInfo();
+								setTimeout(() => {
+									uni.navigateBack({
+										delta: 1
+									})
+								}, 500)
+							})
+
+						} else if (res.cancel) {}
+					}
+				})
+			},
+			// 修改头像
+			upAvatar() {
+				var that = this
+				uni.chooseImage({
+					count: 1,
+					success: (res) => {
+						const tempFilePaths = res.tempFilePaths
+						const formData = {
+							Authorization: "Proprietor " + that.userInfo.token
+						};
+						uploadFilePromise(tempFilePaths[0], null, null, formData).then(s => {
+							that.setHeadLogo(s.url)
+							getUserLoginUpAvatar({
+								url: s.url,
+								id: that.userInfo.user.userId,
+								ossId: s.ossId
+							}).then(ress => {
+							})
+						})
+						// uni.$u.http.upload('api/upload/img', {
+						// 	filePath: tempFilePaths[0],
+						// 	name: 'avatar',
+						// }).then(res => {
+						// 	that.avatar = res
+						// })
+						// })
+					}
+				})
+			},
+			// 检查更新
+			checkUpData() {
+				// #ifdef MP
+				this.inspectMpUpData()
+				// #endif
+				// #ifdef APP-PLUS
+				this.appUpData()
+				// #endif
+			},
+			getPhone() {
+				// #ifdef H5
+				this.openBindPhone(1)
+				// #endif
+			},
+			//檢查小程序更新
+			inspectMpUpData() {
+				// #ifdef MP
+				var that = this
+				mpUpData(res => {
+					if (res.type === 1) {
+						//请求完新版本信息的回调
+						if (!res.data.hasUpdate) {
+							that.$u.toast('当前没有新版发布')
+						}
+					} else if (res.type === 2) {
+						// 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
+						uni.showModal({
+							title: '提示',
+							content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+						})
+					}
+				})
+				// #endif
+			},
+			appUpData() {
+				APPUpdate() //检测app更新
+			},
+			// App计算缓存
+			appFormatSize() {
+				let that = this;
+				formatSize(res => {
+					that.fileSizeString = res
+				})
+			},
+			// App清理缓存
+			appClearCache() {
+				console.log('清除缓存--')
+				let that = this;
+				clearCache(this.fileSizeString).then(() => {
+					that.appFormatSize()
+				})
+			},
+			//授权手机号
+			decryptPhoneNumber(e) {
+				console.log(e, '授权手机号')
+				var that = this
+				// #ifdef MP-WEIXIN
+				if (e.detail.errMsg == 'getPhoneNumber:ok') {
+					if (e.detail.iv) {
+						var authorizeInfo = e.detail;
+						//请去getPhoneInfo方法中使用您的接口绑定信息
+						getPhoneInfo(authorizeInfo, info => {
+							//绑定成功后--保存您的信息
+							// var userInfo = {
+							//     phoneNum: res.phoneNum,
+							// };
+							// that.setUserInfo(userInfo);
+							// that.bindPhoneSuccess()
+							setTimeout(() => {
+								uni.$u.toast('绑定成功')
+							}, 100)
+						}, err => {
+							that.openBindPhone(2, '获取手机号失败,请使用手机号登录')
+						});
+					} else {
+						that.openBindPhone(2, '获取手机号失败,请使用手机号登录')
+					}
+				} else {
+					// 拒绝
+					this.onAuthError()
+				}
+				// #endif
+
+				// #ifdef MP-ALIPAY
+				uni.getPhoneNumber({
+					success: (res) => {
+						console.log(res.response, 'res.response')
+						//请去getPhoneInfo方法中使用您的接口绑定信息
+						getPhoneInfo(res.response, res => {
+							//绑定成功后--保存您的信息
+							// var userInfo = {
+							//     phoneNum: res.phoneNum,
+							// };
+							// that.setUserInfo(userInfo);
+							// that.bindPhoneSuccess()
+							setTimeout(() => {
+								uni.$u.toast('绑定成功')
+							}, 100)
+						}, err => {
+							that.openBindPhone(2, '获取手机号失败,请使用手机号登录')
+						});
+					},
+					fail: (res) => {
+						that.openBindPhone(2, '获取手机号失败,请使用手机号登录')
+					}
+				})
+				// #endif
+			},
+			// 拒绝手机授权
+			onAuthError(e) {
+				this.openBindPhone(2, '您已拒绝或授权失败，可使用手机号绑定~')
+			},
+			// 手机号绑定成功回调方法
+			bindPhoneSuccess() {
+				this.phoneNum = this.$store.state.userInfo.phoneNum || ''
+			},
+			openBindPhone(type = 1, content) {
+				var that = this
+				if (type == 1) {
+					that.onJump('/pages/user/login') //绑定号码可以自定义页面或者弹窗
+				} else if (type == 2) {
+					uni.showModal({
+						title: "温馨提示",
+						content: content,
+						success(res) {
+							if (res.confirm) {
+								that.onJump('/pages/user/login') //绑定号码可以自定义页面或者弹窗
+							}
+						}
+					});
+				}
+			},
+			// 获取当前应用的版本号
+			getCurrentNo(callback) {
+				var that = this
+				// 获取本地应用资源版本号
+				plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+					that.versionInfo = {
+						versionCode: inf.versionCode,
+						versionName: inf.version
+					}
+				});
+			}
+
+		}
+	};
+</script>
+
+<style lang="scss">
+	// page {
+	//     background: #fff;
+	// }
+	.group {
+		padding: 0 30rpx;
+		margin-top: 20rpx;
+		background: #fff;
+	}
+
+	.cell {
+		position: relative;
+		// line-height: normal;
+		padding: 24rpx 0;
+		border-bottom: 1rpx solid #eee;
+
+		.title {
+			font-size: 30rpx;
+			color: #333;
+		}
+
+		.text {
+			font-size: 28rpx;
+			color: #888;
+		}
+
+		.itemButton {
+			border-radius: 0;
+			text-align: left;
+			opacity: 0;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		&:last-child {
+			border-bottom: none;
+		}
+
+		.avatar {
+			width: 80rpx;
+			height: 80rpx;
+			border-radius: 40rpx;
+			margin-right: 10rpx;
+		}
+	}
+</style>

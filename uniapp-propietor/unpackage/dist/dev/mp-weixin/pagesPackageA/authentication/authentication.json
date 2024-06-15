@@ -1,0 +1,18 @@
+{
+  "navigationBarTitleText": "业主认证",
+  "usingComponents": {
+    "u-alert": "/uni_modules/uview-ui/components/u-alert/u-alert",
+    "u-steps": "/uni_modules/uview-ui/components/u-steps/u-steps",
+    "u-steps-item": "/uni_modules/uview-ui/components/u-steps-item/u-steps-item",
+    "u-form": "/uni_modules/uview-ui/components/u-form/u-form",
+    "u-form-item": "/uni_modules/uview-ui/components/u-form-item/u-form-item",
+    "u-input": "/uni_modules/uview-ui/components/u-input/u-input",
+    "u-keyboard": "/uni_modules/uview-ui/components/u-keyboard/u-keyboard",
+    "u-empty": "/uni_modules/uview-ui/components/u-empty/u-empty",
+    "u--input": "/uni_modules/uview-ui/components/u--input/u--input",
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
+    "u-upload": "/uni_modules/uview-ui/components/u-upload/u-upload",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button",
+    "u-picker": "/uni_modules/uview-ui/components/u-picker/u-picker"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "通知详情",
+  "usingComponents": {
+    "u-parse": "/uni_modules/uview-ui/components/u-parse/u-parse"
+  }
+}

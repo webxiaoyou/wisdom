@@ -1,0 +1,128 @@
+.bg.data-v-f4f5f69e {
+  background-image: url(../../static/img/blurry-gradient-haikei.366af117.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /* 将背景图层级设为-1，使其他内容在其上层显示 */
+}
+.invite-description.data-v-f4f5f69e {
+  width: 375rpx;
+  margin-bottom: 40rpx;
+}
+.invite-description .title.data-v-f4f5f69e {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fcfcfc;
+}
+.invite-description .content.data-v-f4f5f69e {
+  font-size: 14px;
+  color: #fcfcfc;
+}
+.invite-card.data-v-f4f5f69e {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.invite-card .card-title.data-v-f4f5f69e {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20rpx 0 40rpx 0;
+}
+.invite-card .card-content.data-v-f4f5f69e {
+  display: flex;
+  font-size: 14px;
+  justify-content: space-around;
+}
+.invite-card .sub-card.data-v-f4f5f69e {
+  width: 30%;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+.invite-card .sub-card.selected.data-v-f4f5f69e {
+  background-color: #2672fa;
+  color: #fff;
+}
+.invite-card .card-swiper.data-v-f4f5f69e {
+  height: calc(100vh - 900rpx);
+  overflow-y: scroll;
+  /* 计算 swiper 的高度，减去上下的间距 */
+  margin-bottom: 10px;
+}
+.modal-container.data-v-f4f5f69e {
+  width: 80%;
+  text-align: center;
+  padding: 20rpx;
+}
+.modal-container .modal-title.data-v-f4f5f69e {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2672fa;
+  margin-bottom: 20rpx;
+}
+.modal-container .invite-code.data-v-f4f5f69e {
+  font-size: 16px;
+  color: #ff9900;
+  margin: 40rpx 0;
+}
+.modal-container .authorize-content.data-v-f4f5f69e {
+  text-align: center;
+}
+.modal-container .authorize-content .authorize-title.data-v-f4f5f69e {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20rpx 0 40rpx 0;
+}
+.modal-container .authorize-content .authorize-swiper.data-v-f4f5f69e {
+  height: 100px;
+  margin-bottom: 20rpx;
+  overflow-y: scroll;
+}
+.modal-container .authorize-content .authorize-swiper .card-content.data-v-f4f5f69e {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  justify-content: space-around;
+}
+.modal-container .authorize-content .authorize-swiper .card-content .authorize-item.data-v-f4f5f69e {
+  width: 45%;
+  margin: 0 10rpx;
+  background-color: #f5f5f5;
+  padding: 10rpx 5rpx;
+  border-radius: 5rpx;
+  margin-bottom: 10rpx;
+  box-sizing: border-box;
+}
+.modal-container .expire-time.data-v-f4f5f69e {
+  font-size: 14px;
+  margin-bottom: 40rpx;
+}
+.modal-container .expire-time .expire-time-text.data-v-f4f5f69e {
+  color: #ff0000;
+  font-weight: bold;
+}
+.modal-container .copy-button.data-v-f4f5f69e {
+  background-color: #2672fa;
+  color: #ffffff;
+  padding: 10rpx;
+  border-radius: 5rpx;
+  cursor: pointer;
+}
+.bottom-btn.data-v-f4f5f69e {
+  width: 705rpx;
+  position: fixed;
+  height: 150rpx;
+  bottom: 0rpx;
+}
+

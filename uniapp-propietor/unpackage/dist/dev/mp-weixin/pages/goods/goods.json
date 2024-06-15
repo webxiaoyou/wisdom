@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "商品",
+  "usingComponents": {
+    "u-popup": "/uni_modules/uview-ui/components/u-popup/u-popup",
+    "good-one": "/components/module/good",
+    "specs-popup": "/components/module/specs-popup",
+    "f-tabbar": "/components/module/f-tabbar/f-tabbar"
+  }
+}

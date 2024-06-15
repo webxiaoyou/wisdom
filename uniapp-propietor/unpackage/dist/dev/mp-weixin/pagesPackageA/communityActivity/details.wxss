@@ -1,0 +1,17 @@
+.images.data-v-7927973d {
+  width: 750rpx;
+  height: 250rpx;
+}
+.contnet .title.data-v-7927973d {
+  font-size: 38rpx;
+  font-weight: bold;
+}
+.contnet .description.data-v-7927973d {
+  margin: 16rpx 0;
+  color: #767676;
+}
+.contnet .activityTime.data-v-7927973d {
+  font-size: 24rpx;
+  margin: 20rpx 0;
+}
+

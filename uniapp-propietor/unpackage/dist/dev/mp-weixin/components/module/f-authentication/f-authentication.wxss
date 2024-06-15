@@ -1,0 +1,14 @@
+.title.data-v-71251132 {
+  margin-top: -100rpx;
+  margin-bottom: 20rpx;
+  font-weight: bold;
+}
+.description.data-v-71251132 {
+  font-size: 28rpx;
+  color: #808080;
+}
+.btn.data-v-71251132 {
+  width: 50%;
+  margin-top: 60rpx;
+}
+

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "报事报修",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "u--text": "/uni_modules/uview-ui/components/u--text/u--text",
+    "u-empty": "/uni_modules/uview-ui/components/u-empty/u-empty",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button"
+  }
+}

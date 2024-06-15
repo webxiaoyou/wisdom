@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "微信流量主",
+  "usingComponents": {
+    "f-ad": "/components/module/f-ad/f-ad"
+  }
+}
