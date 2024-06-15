@@ -5,7 +5,7 @@
           <div class="right-side h p-l3 p-r3 p-t6 p-b6  ">
             <div class="rigth-box w h flex-column flex-align-center ">
               <div class="title ">
-                <h1>智慧管家</h1>
+                <h1>智慧管家</h1> 
               </div>
               <div class="content rigth-box1 w m-t5 flex-row flex-justify-center">
                 <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -52,8 +52,10 @@ interface FormState {
 }
 
 const formState = reactive<FormState>({
-  account: 'admin',
-  password: 'admin123',
+  // account: 'admin',
+  // password: 'admin123',
+  account: '',
+  password: '',
 });
 
 const rules = {

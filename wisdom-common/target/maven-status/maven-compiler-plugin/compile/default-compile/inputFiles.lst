@@ -22,7 +22,9 @@ D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wis
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\entity\PConfig.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\service\impl\PRepairServiceImpl.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\utils\ServletUtils.java
+D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\entity\PVisitorInvitation.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\vo\PRepairVo.java
+D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\service\PVisitorInvitationService.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\entity\PRepair.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\vo\PPropertyUnitVo.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\service\PComplaintSuggestionService.java
@@ -44,6 +46,7 @@ D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wis
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\utils\spring\SpringUtils.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\event\OperLogEvent.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\vo\PNotificationVo.java
+D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\dto\PVisitorInvitationDTO.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\service\PNotificationService.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\utils\StringUtils.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\mapper\PNotificationMapper.java
@@ -54,6 +57,7 @@ D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wis
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\vo\PPropertyUnitAndPUserVo.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\service\impl\PConfigServiceImpl.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\dto\PFloorDTO.java
+D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\mapper\PVisitorInvitationMapper.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\dto\PCommunityActivityDTO.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\mapper\PFloorMapper.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\constants\CacheNames.java
@@ -61,8 +65,10 @@ D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wis
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\service\impl\PBuildingServiceImpl.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\dto\PBuildingDTO.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\vo\PConfigVo.java
+D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\vo\PVisitorInvitationVo.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\config\WebConfig.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\service\impl\PComplaintSuggestionServiceImpl.java
+D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\service\impl\PVisitorInvitationServiceImpl.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\service\impl\PPropertyServiceImpl.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\domain\dto\PBuildingDictDTO.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-common\src\main\java\com\wisdom\common\mapper\PBuildingMapper.java

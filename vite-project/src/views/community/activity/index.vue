@@ -7,21 +7,21 @@
 
   <a-space class="animate__animated animate__fadeInDown">
     <a-button type="primary" @click="onAdd('add')" style="background-color: #40ce8c;"
-      class="flex-row flex-align-center m-b3" v-hasPermi="['system:post:add']">
+      class="flex-row flex-align-center m-b3" v-hasPermi="['community:pcommunity_activity:add']">
       <template #icon>
         <Icon icon="ic:baseline-add" />
       </template>
       新增
     </a-button>
     <a-button type="primary" @click="onAdd('up')" style="background-color: #ffb700;"
-      class="flex-row flex-align-center m-b3" :disabled="single" v-hasPermi="['system:post:edit']">
+      class="flex-row flex-align-center m-b3" :disabled="single" v-hasPermi="['community:pcommunity_activity:edit']">
       <template #icon>
         <Icon icon="uil:edit" />
       </template>
       编辑
     </a-button>
     <a-button type="primary" danger class="flex-row flex-align-center m-b3" :disabled="multiple"
-      v-hasPermi="['system:post:remove']" @click="onDel">
+      v-hasPermi="['community:pcommunity_activity:remove']" @click="onDel">
       <template #icon>
         <Icon icon="ic:outline-delete" />
       </template>

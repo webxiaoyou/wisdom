@@ -23,14 +23,14 @@
         </a-popconfirm>
       </template> -->
       <template v-if="column.dataIndex === 'operation' && record.roleName != '超级管理员'">
-        <a-button type="link" @click="onQuery(record.userId, 'up')" v-hasPermi="['system:pconfig:edit']">
+        <a-button type="link" @click="onQuery(record.userId, 'up')" v-hasPermi="['system:puser:edit']">
           <template #icon>
             <Icon icon="uil:edit" style="vertical-align: middle;" />
           </template>
           编辑
         </a-button>
         <a-popconfirm title="你确定要删除该条数据吗" ok-text="确定" cancel-text="取消" @confirm="onQuery(record.userId, 'del')">
-          <a-button type="link" v-hasPermi="['system:pconfig:remove']">
+          <a-button type="link" v-hasPermi="['system:puser:remove']">
             <template #icon>
               <Icon icon="ic:outline-delete" style="vertical-align: middle;" />
             </template>

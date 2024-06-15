@@ -2,17 +2,21 @@
   <a-table :row-selection="rowSelection" :columns="columns" :scroll="{ x: 1500 , y: height - 450}" class="custom-table"
     :data-source="data" rowKey="id" :pagination="false">
     <template #bodyCell="{ column, text, record,index }">
-      <template v-if="column.dataIndex === 'position'">
-        <a-select placeholder="物业小区" v-model:value="record.position" :open="false" :showArrow="false" :bordered="false">
+      <template v-if="column.dataIndex === 'propertyId'">
+        {{ getSingleDictLabel(props.distList, 'pproperty_dict', text) }}
+
+        <!-- <a-select placeholder="物业小区" v-model:value="record.position" :open="false" :showArrow="false" :bordered="false">
           <a-select-option :value="item.value" v-for="item in distList?.pproperty_dict" :key="item.value">{{
             item.label }}</a-select-option>
-        </a-select>
+        </a-select> -->
       </template>
       <template v-if="column.dataIndex === 'userId'">
-        <a-select placeholder="报修用户" v-model:value="record.userId" :open="false" :showArrow="false" :bordered="false">
+        {{ getSingleDictLabel(props.distList, 'pproperty_unit_dict', text) }}
+
+        <!-- <a-select placeholder="报修用户" v-model:value="record.userId" :open="false" :showArrow="false" :bordered="false">
           <a-select-option :value="item.value" v-for="item in distList?.pproperty_unit_dict" :key="item.value">{{
             item.label }}</a-select-option>
-        </a-select>
+        </a-select> -->
       </template>
       <template v-if="column.dataIndex === 'status'">
         <a-tag :color="text == 0 ? 'success' : 'processing'">{{ text == 0 ? '已阅读' : '未阅读' }}</a-tag>
@@ -53,6 +57,7 @@ import { h } from 'vue';
 import * as Icons from '@ant-design/icons-vue';
 import { Icon } from '@iconify/vue';
 import { ref, computed, unref } from 'vue'
+import { getAssetsImages, getDictLabel,getSingleDictLabel } from '@/hooks/publicFunction'; // 导入必要的函数
 import type { TableProps, TableColumnType } from 'ant-design-vue';
 import { useWindowSize } from '@vueuse/core'
 const {  height } = useWindowSize()

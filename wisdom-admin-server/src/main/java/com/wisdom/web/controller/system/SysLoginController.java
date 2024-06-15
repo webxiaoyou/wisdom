@@ -3,8 +3,6 @@ package com.wisdom.web.controller.system;
 import cn.dev33.satoken.annotation.SaIgnore;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.wisdom.common.domain.ResponseResult;
-
-import com.wisdom.common.domain.dto.PRepairDTO;
 import com.wisdom.common.domain.entity.*;
 import com.wisdom.common.domain.model.LoginBody;
 import com.wisdom.common.domain.model.LoginUser;
@@ -19,8 +17,10 @@ import com.wisdom.system.domain.entity.SysUserRole;
 import com.wisdom.system.domain.vo.AdminUserInfoVo;
 import com.wisdom.system.domain.vo.RoutersVo;
 import com.wisdom.system.domain.vo.SysUserInfoVo;
-import com.wisdom.system.service.*;
-
+import com.wisdom.system.service.ISysMenuService;
+import com.wisdom.system.service.ISysUserRoleService;
+import com.wisdom.system.service.ISysUserService;
+import com.wisdom.system.service.SysLoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -66,8 +65,8 @@ public class SysLoginController {
      */
     @SaIgnore
     @PostMapping("/login")
-    public ResponseResult login(@Validated @RequestBody LoginBody loginBody){
-        if(!StringUtils.hasText(loginBody.getAccount())){
+    public ResponseResult login(@Validated @RequestBody LoginBody loginBody) {
+        if (!StringUtils.hasText(loginBody.getAccount())) {
             //提示 必须要传用户名
             throw new SystemException(AppHttpCodeEnum.REQUIRE_USERNAME);
         }
@@ -132,45 +131,71 @@ public class SysLoginController {
     @GetMapping("/getIndex")
     public ResponseResult getindex() {
         // 获取当前登录用户的ID
-        Long userId = LoginHelper.getUserId();
         LoginUser loginUser = LoginHelper.getLoginUser();
-        // 要检测是否包含 ['admin', 'text']
-        //业主信息
-        List<PPropertyUnit> propertyUnit =new ArrayList<>();
-        //获取报修信息
-        List<String> rolesToCheck = Arrays.asList("superAdmin","admin");
-        LambdaQueryWrapper<PRepair> queryWrapper = new LambdaQueryWrapper<>();
-        LambdaQueryWrapper<PComplaintSuggestion> querySuggestionWrapper = new LambdaQueryWrapper<>();
-        querySuggestionWrapper.eq( PComplaintSuggestion::getStatus, "1");
-        if (loginUser.getRolePermission().stream().anyMatch(rolesToCheck::contains)){
-            queryWrapper.eq(loginUser.getDeptId()!=null, PRepair::getPropertyId, loginUser.getDeptId());
-            queryWrapper.ne(PRepair::getStatus, "2");
-            LambdaQueryWrapper<PPropertyUnit> queryUnitWrapper = new LambdaQueryWrapper<>();
-            queryUnitWrapper.eq(PPropertyUnit::getAuthenticationStatus,"1");
-            queryUnitWrapper.eq(PPropertyUnit::getDelFlag,"0");
-            propertyUnit = pPropertyUnitService.list(queryUnitWrapper);
-        }else{
-            // 根据实际需求添加查询条件
-            queryWrapper.eq(loginUser.getDeptId()!=null, PRepair::getPropertyId, loginUser.getDeptId());
-            queryWrapper.eq( PRepair::getStatus, "1");
-            queryWrapper.eq(loginUser.getId()!=null, PRepair::getHandlerId, loginUser.getId());
-            querySuggestionWrapper.eq(loginUser.getDeptId()!=null, PComplaintSuggestion::getPropertyId, loginUser.getDeptId());
 
+        // 业主信息
+        List<PPropertyUnit> propertyUnit = new ArrayList<>();
+
+        //报修内容
+        List<PRepair> repair = new ArrayList<>();
+
+        //投诉建议
+        List<PComplaintSuggestion> suggestion = new ArrayList<>();
+
+
+        // 获取报修信息
+        List<String> rolesToCheck = Arrays.asList("superAdmin", "admin","repairAdmin");
+        List<String> rolesToRepair = Arrays.asList("repair");
+
+//        LambdaQueryWrapper<PRepair> queryWrapper = new LambdaQueryWrapper<>();
+//        LambdaQueryWrapper<PComplaintSuggestion> querySuggestionWrapper = new LambdaQueryWrapper<>();
+//        querySuggestionWrapper.eq(PComplaintSuggestion::getStatus, "1");
+
+        Set<String> rolesToCheckSet = new HashSet<>(rolesToCheck);
+
+
+//        querySuggestionWrapper.eq(loginUser.getDeptId() != null, PComplaintSuggestion::getPropertyId, loginUser.getDeptId());
+
+        if (loginUser.getRolePermission().stream().anyMatch(rolesToCheckSet::contains)) {
+            propertyUnit = pPropertyUnitService.list(new LambdaQueryWrapper<PPropertyUnit>()
+                    .eq(PPropertyUnit::getAuthenticationStatus, "1")
+                    .eq(PPropertyUnit::getDelFlag, "0"));
+            repair = pRepairService.list(new LambdaQueryWrapper<PRepair>()
+                    .eq(loginUser.getDeptId() != null, PRepair::getPropertyId, loginUser.getDeptId())
+                    .ne(PRepair::getStatus, "2"));
+            suggestion = pComplaintSuggestionService.list(new LambdaQueryWrapper<PComplaintSuggestion>().eq(PComplaintSuggestion::getStatus, "1")
+                    .eq(loginUser.getDeptId() != null, PComplaintSuggestion::getPropertyId, loginUser.getDeptId()));
+            // 提取的查询条件
+
+        } else {
+//            queryWrapper.eq(PRepair::getStatus, "1");
         }
-        List<PRepair> PRepairList = pRepairService.list(queryWrapper);
-        List<PComplaintSuggestion> suggestionList = pComplaintSuggestionService.list(querySuggestionWrapper);
+
+        if (loginUser.getRolePermission().stream().anyMatch(rolesToRepair::contains)) {
+            // 提取的查询条件
+            repair = pRepairService.list(new LambdaQueryWrapper<PRepair>()
+                    .eq(loginUser.getDeptId() != null, PRepair::getPropertyId, loginUser.getDeptId())
+                    .eq(loginUser.getId() != null, PRepair::getHandlerId, loginUser.getId())
+                    .ne(PRepair::getStatus, "2"));
+        }
+
+//        List<PRepair> PRepairList = pRepairService.list(queryWrapper);
+//        List<PComplaintSuggestion> suggestionList = pComplaintSuggestionService.list(querySuggestionWrapper);
+
         Map<Object, Object> map = new HashMap<>();
-        if (PRepairList != null && !PRepairList.isEmpty()) {
-            map.put("repair", PRepairList);
+
+        if (!repair.isEmpty()) {
+            map.put("repair", repair);
         }
 
-        if (propertyUnit != null && !propertyUnit.isEmpty()) {
+        if (!propertyUnit.isEmpty()) {
             map.put("propertyUnit", propertyUnit);
         }
 
-        if (suggestionList != null && !suggestionList.isEmpty()) {
-            map.put("suggestion", suggestionList);
+        if (!suggestion.isEmpty()) {
+            map.put("suggestion", suggestion);
         }
+
         return ResponseResult.okResult(map);
     }
 }

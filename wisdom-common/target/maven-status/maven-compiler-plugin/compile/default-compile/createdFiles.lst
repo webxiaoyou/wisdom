@@ -28,6 +28,7 @@ com\wisdom\common\service\impl\PRepairServiceImpl.class
 com\wisdom\common\domain\entity\SysUser.class
 com\wisdom\common\utils\redis\RedisUtils__Javadoc.json
 com\wisdom\common\domain\dto\PRepairDTO__Javadoc.json
+com\wisdom\common\service\PVisitorInvitationService__Javadoc.json
 com\wisdom\common\utils\redis\CacheUtils.class
 com\wisdom\common\domain\dto\PConfigDTO.class
 com\wisdom\common\domain\entity\SysMenu__Javadoc.json
@@ -40,6 +41,7 @@ com\wisdom\common\utils\spring\SpringUtils__Javadoc.json
 com\wisdom\common\domain\dto\PUserDto__Javadoc.json
 com\wisdom\common\domain\entity\PUser__Javadoc.json
 com\wisdom\common\utils\JsonUtils.class
+com\wisdom\common\service\PVisitorInvitationService.class
 com\wisdom\common\domain\vo\PCommunityActivityVo__Javadoc.json
 com\wisdom\common\service\impl\PUserServiceImpl__Javadoc.json
 com\wisdom\common\domain\vo\PBuildingVo.class
@@ -82,6 +84,7 @@ com\wisdom\common\service\impl\PPropertyUnitServiceImpl__Javadoc.json
 com\wisdom\common\constants\Constants.class
 com\wisdom\common\domain\vo\PageVo.class
 com\wisdom\common\utils\StringUtils__Javadoc.json
+com\wisdom\common\domain\dto\PVisitorInvitationDTO.class
 com\wisdom\common\enums\DeviceType__Javadoc.json
 com\wisdom\common\domain\vo\PCommunityActivityVo.class
 com\wisdom\common\service\IPUserService__Javadoc.json
@@ -89,11 +92,13 @@ com\wisdom\common\service\impl\PNotificationServiceImpl.class
 com\wisdom\common\mapper\PPropertyMapper__Javadoc.json
 com\wisdom\common\service\impl\PFloorServiceImpl__Javadoc.json
 com\wisdom\common\enums\UserStatus__Javadoc.json
+com\wisdom\common\service\impl\PVisitorInvitationServiceImpl.class
 com\wisdom\common\utils\JsonUtils__Javadoc.json
 com\wisdom\common\domain\dto\RoleDTO__Javadoc.json
 com\wisdom\common\mapper\PBuildingMapper.class
 com\wisdom\common\utils\ip\AddressUtils__Javadoc.json
 com\wisdom\common\domain\dto\UserOnlineDTO__Javadoc.json
+com\wisdom\common\service\impl\PVisitorInvitationServiceImpl__Javadoc.json
 com\wisdom\common\domain\dto\PComplaintSuggestionDTO.class
 com\wisdom\common\utils\redis\RedisUtils.class
 com\wisdom\common\service\impl\PPropertyUnitServiceImpl.class
@@ -107,6 +112,7 @@ com\wisdom\common\utils\redis\QueueUtils__Javadoc.json
 com\wisdom\common\domain\dto\PUserDto.class
 com\wisdom\common\domain\vo\PPropertyUnitAndPUserVo.class
 com\wisdom\common\domain\entity\PCommunityActivity.class
+com\wisdom\common\mapper\PVisitorInvitationMapper.class
 com\wisdom\common\service\PCommunityActivityService.class
 com\wisdom\common\service\PFloorService.class
 META-INF\spring-configuration-metadata.json
@@ -123,6 +129,7 @@ com\wisdom\common\domain\dto\LoginDTO.class
 com\wisdom\common\domain\entity\PConfig__Javadoc.json
 com\wisdom\common\domain\entity\PFloor.class
 com\wisdom\common\service\IPConfigService__Javadoc.json
+com\wisdom\common\domain\entity\PVisitorInvitation.class
 com\wisdom\common\domain\vo\PUserVo.class
 com\wisdom\common\domain\model\LoginBody.class
 com\wisdom\common\mapper\PUserMapper__Javadoc.json
@@ -157,7 +164,9 @@ com\wisdom\common\domain\vo\PPropertyVo.class
 com\wisdom\common\mapper\PRepairMapper.class
 com\wisdom\common\utils\BeanCopyUtils__Javadoc.json
 com\wisdom\common\mapper\PNotificationMapper__Javadoc.json
+com\wisdom\common\domain\dto\PVisitorInvitationDTO__Javadoc.json
 com\wisdom\common\utils\DateUtils__Javadoc.json
+com\wisdom\common\domain\vo\PVisitorInvitationVo.class
 com\wisdom\common\utils\ip\AddressUtils.class
 com\wisdom\common\domain\entity\WxUser.class
 com\wisdom\common\domain\vo\PNotificationVo.class
@@ -180,6 +189,7 @@ com\wisdom\common\utils\BeanCopyUtils.class
 com\wisdom\common\domain\entity\SysUser__Javadoc.json
 com\wisdom\common\domain\entity\PBuilding__Javadoc.json
 com\wisdom\common\mapper\PPropertyUnitMapper.class
+com\wisdom\common\domain\vo\PVisitorInvitationVo__Javadoc.json
 com\wisdom\common\mapper\PPropertyUnitMapper__Javadoc.json
 com\wisdom\common\config\WebConfig__Javadoc.json
 com\wisdom\common\domain\event\LogininforEvent.class
@@ -188,6 +198,7 @@ com\wisdom\common\domain\dto\LoginDTO__Javadoc.json
 com\wisdom\common\domain\vo\PLoginVo__Javadoc.json
 com\wisdom\common\domain\vo\PageVo__Javadoc.json
 com\wisdom\common\domain\event\OperLogEvent.class
+com\wisdom\common\mapper\PVisitorInvitationMapper__Javadoc.json
 com\wisdom\common\domain\model\LoginBody__Javadoc.json
 com\wisdom\common\domain\dto\PFloorDTO__Javadoc.json
 com\wisdom\common\domain\vo\PComplaintSuggestionVo__Javadoc.json
@@ -202,4 +213,5 @@ com\wisdom\common\service\PPropertyService.class
 com\wisdom\common\mapper\PRepairMapper__Javadoc.json
 com\wisdom\common\domain\vo\PConfigVo.class
 com\wisdom\common\domain\entity\PComplaintSuggestion.class
+com\wisdom\common\domain\entity\PVisitorInvitation__Javadoc.json
 com\wisdom\common\constants\CacheConstants.class

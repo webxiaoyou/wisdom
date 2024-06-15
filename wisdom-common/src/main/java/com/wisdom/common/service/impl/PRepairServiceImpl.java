@@ -1,6 +1,7 @@
 package com.wisdom.common.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wisdom.common.domain.entity.PCommunityActivity;
 import com.wisdom.common.mapper.PRepairMapper;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -37,7 +38,12 @@ public class PRepairServiceImpl extends ServiceImpl<PRepairMapper, PRepair> impl
         queryWrapper.eq(pRepairDTO.getUserId()!=null, PRepair::getUserId, pRepairDTO.getUserId());
         queryWrapper.eq(pRepairDTO.getStatus()!=null, PRepair::getStatus, pRepairDTO.getStatus());
         queryWrapper.eq(pRepairDTO.getHandlerId()!=null, PRepair::getHandlerId, pRepairDTO.getHandlerId());
-       // queryWrapper.like(StringUtils.hasText(pRepairDTO.getPostCode()), PRepair::getPostCode, pRepairDTO.getPostCode());
+        if ("desc".equalsIgnoreCase(pRepairDTO.getOrder())) {
+            queryWrapper.orderByDesc(PRepair::getCreateTime);
+        } else if ("asc".equalsIgnoreCase(pRepairDTO.getOrder())) {
+            queryWrapper.orderByAsc(PRepair::getCreateTime);
+        }
+        // queryWrapper.like(StringUtils.hasText(pRepairDTO.getPostCode()), PRepair::getPostCode, pRepairDTO.getPostCode());
        // queryWrapper.like(StringUtils.hasText(pRepairDTO.getPostName()), PRepair::getPostName, pRepairDTO.getPostName());
         //添加按起始时间和结束时间查询条件（仅在不为null时添加）
 //        if (pRepairDTO.getParams() != null ) {

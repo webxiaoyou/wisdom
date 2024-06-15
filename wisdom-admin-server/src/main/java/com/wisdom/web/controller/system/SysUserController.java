@@ -3,6 +3,7 @@ package com.wisdom.web.controller.system;
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.dev33.satoken.secure.BCrypt;
 import cn.hutool.core.io.FileUtil;
+import com.wisdom.common.domain.dto.PUserDto;
 import com.wisdom.common.domain.entity.SysUser;
 import com.wisdom.common.helper.LoginHelper;
 import com.wisdom.common.utils.StringUtils;
@@ -59,6 +60,17 @@ public class SysUserController {
     @SaCheckPermission("system:user:list")
     @GetMapping("list")
     public ResponseResult selectAll(SysUser sysUser){
+        return userService.selectAll(sysUser);
+    }
+
+    /**
+     * 物业人员查询查询
+     *
+     * @param sysUser 查询条件
+     * @return 列表结果
+     */
+    @GetMapping("/dict/list")
+    public ResponseResult selectDictAll(SysUser sysUser) {
         return userService.selectAll(sysUser);
     }
 
@@ -151,7 +163,8 @@ public class SysUserController {
         if (!LoginHelper.isAdmin()) {
             return ResponseResult.errorResult(500, "没有权限修改用户数据");
         }
-        user.setPassword(BCrypt.hashpw(sysUserPasswordDto.getNewPassword()));
+
+        user.setPassword(BCrypt.hashpw(sysUserPasswordDto.getPassword()));
         boolean success = userService.updateById(user);
         if (success) {
             return ResponseResult.okResult(AppHttpCodeEnum.UP_SUCCESS);

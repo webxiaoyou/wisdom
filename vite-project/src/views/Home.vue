@@ -8,8 +8,8 @@
             v-hasPermi="item.id == 1 ? ['tenement:prepair:list'] : ['tenement:pproperty_unit:list']">
             <div class="card-style">
               <div class="title">
-                <h3>{{ item.name }}</h3>
-                <h1>{{ item.num }}个</h1>
+                <h3>{{ item.name || 0}}</h3>
+                <h1>{{ item.num || 0}}个</h1>
               </div>
               <div class="right-img" :style="{ width: item.width, right: item.right }">
                 <img :src="getAssetsImages(item.img)" alt="">
@@ -28,7 +28,7 @@
                   <div class="left">
                     <a-tag color="processing">{{ getSingleDictLabel(distList, 'pproperty_dict', item.propertyId)
                     }}</a-tag>
-                    <a-tag :color="item.status == 0 ? 'error' : 'warning'">{{ item.status == 0 ? '投诉' : '建议' }}</a-tag>
+                    <a-tag :color="item.isSuggest == 0 ? 'error' : 'warning'">{{ item.isSuggest == 0 ? '投诉' : '建议' }}</a-tag>
                     <a-popover placement="topLeft">
                       <template #content>
                         {{ item.content }}

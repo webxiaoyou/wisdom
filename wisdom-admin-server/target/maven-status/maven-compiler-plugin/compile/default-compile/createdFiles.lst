@@ -1,6 +1,7 @@
 com\wisdom\web\controller\system\SysDictTypeController__Javadoc.json
 com\wisdom\web\controller\tenement\PRepairController__Javadoc.json
 com\wisdom\web\controller\tenement\PPropertyController__Javadoc.json
+com\wisdom\web\controller\tenement\PVisitorInvitationController.class
 com\wisdom\web\controller\tenement\PPropertyController.class
 com\wisdom\web\controller\tenement\PRepairController.class
 com\wisdom\web\controller\system\SysOssConfigController.class
@@ -29,6 +30,7 @@ com\wisdom\web\controller\tenement\PUserController.class
 com\wisdom\web\controller\system\SysUserController__Javadoc.json
 com\wisdom\web\controller\community\PCommunityActivityController__Javadoc.json
 com\wisdom\web\controller\system\SysPostController.class
+com\wisdom\web\controller\tenement\PVisitorInvitationController__Javadoc.json
 com\wisdom\web\controller\monitor\SysLogininforController.class
 com\wisdom\web\controller\system\SysOssConfigController__Javadoc.json
 com\wisdom\web\controller\tenement\PPropertyUnitController__Javadoc.json

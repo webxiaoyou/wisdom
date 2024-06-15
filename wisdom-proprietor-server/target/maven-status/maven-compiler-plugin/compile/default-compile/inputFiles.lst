@@ -1,7 +1,11 @@
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-proprietor-server\src\main\java\com\wisdom\proprletor\controller\PCommunityActivityController.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-proprietor-server\src\main\java\com\wisdom\proprletor\controller\PRepairController.java
+D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-proprietor-server\src\main\java\com\wisdom\proprletor\monitor\ScheduledTasks.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-proprietor-server\src\main\java\com\wisdom\config\wx\WxMaConfiguration.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-proprietor-server\src\main\java\com\wisdom\proprletor\controller\PUserController.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-proprietor-server\src\main\java\com\wisdom\WisdomProprietorApplication.java
+D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-proprietor-server\src\main\java\com\wisdom\proprletor\controller\PVisitorInvitationController.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-proprietor-server\src\main\java\com\wisdom\proprletor\controller\WxMaLoginController.java
 D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-proprietor-server\src\main\java\com\wisdom\proprletor\controller\PConfigController.java
+D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-proprietor-server\src\main\java\com\wisdom\proprletor\controller\PNotificationController.java
+D:\Desktop\项目案例\javaweb项目\wisdom\wisdom-proprietor-server\src\main\java\com\wisdom\proprletor\controller\PPropertyUnitController.java

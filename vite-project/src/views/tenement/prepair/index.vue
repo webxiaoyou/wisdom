@@ -52,7 +52,7 @@
     </p>
   </a-modal>
   <Drawer :opens="open" :columns="drawerColumns" @close="rowDrawerClose" :data="DetailData" :distList="distList" ></Drawer>
-  <mrepair v-model:opens="MPopens" :columns="MRcolumns" :data="RepairList" @ok="toAllot"></mrepair>
+  <mrepair v-model:opens="MPopens" :columns="MRcolumns" :data="RepairList" @ok="toAllot" :distList="distList"></mrepair>
 </template>
 
 <script setup lang="ts" name="prepair">
@@ -95,6 +95,10 @@ const columns: TableColumnType[] = [
   {
     title: '楼层房间',
     dataIndex: 'floorId',
+  },
+  {
+    title: '报修标题',
+    dataIndex: 'title',
   },
   {
     title: '报修描述',
@@ -142,13 +146,17 @@ const drawerColumns: TableColumn[] = [
 
   },
   {
+    title: '报修标题',
+    dataIndex: 'title',
+  },
+  {
     title: '报修描述',
     dataIndex: 'description',
   },
-  {
-    title: '报修状态',
-    dataIndex: 'status',
-  },
+  // {
+  //   title: '报修状态',
+  //   dataIndex: 'status',
+  // },
   {
     title: '报修用户',
     dataIndex: 'userId',
@@ -217,6 +225,7 @@ let formState: UnwrapRef<PRepair> = reactive({
   createTime: null,
   updateTime: null,
   handlerId:userStore?.roles.includes('repair')?userStore?.userInfo?.id:null,
+  order:'asc',
   pageNum: 1,
   pageSize: 20,
 });
@@ -407,7 +416,7 @@ const list = async () => {
 //获取维修人员信息
 const getRepairList = async () => {
   const formStates = { ...RepairState }
-  const { data } = await API.sys_user_list(formStates)
+  const { data } = await API.sys_user_dict_list(formStates)
   RepairList.value = data
 }
 // 查询业主信息
@@ -428,13 +437,15 @@ const GetUnitDictlists = async () => {
   distList.value.unit_dict = data.data
 }
 
-// 查询小区字典详情
+// 查询岗位详情
 const dictList = async () => {
-  const datas: any = await API.sys_pproperty_dict_id();
+  const datas: any = await API.sys_post_dict_list();
+  const pdataDict: any = await API.sys_pproperty_dict_id();
   const { code, data, msg } = datas;
   if (code === 200) {
-    distList.value.pproperty_dict = data
-    searchColumns.value[0].options = data
+    distList.value.sys_post_list = data
+    searchColumns.value[0].options = pdataDict.data
+    distList.value.pproperty_dict = pdataDict.data
   } else {
    
   }
@@ -585,12 +596,6 @@ const onAddUp = async (callformState: PRepair) => {
   }
 }
 
-//获取角色列表
-// const getRoleList = async (roleId: number | string = '') => {
-//   const datas: any = await API.sys_menu_get_tree(roleId);
-//   const { data: roleData } = datas
-//   FormColumns.value[4].options = roleData;
-// }
 
 // 详情抽屉回调
 const rowDrawerClose = () => {

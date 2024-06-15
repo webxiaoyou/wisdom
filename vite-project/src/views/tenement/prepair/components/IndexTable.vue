@@ -33,7 +33,7 @@
           </template>
           编辑
         </a-button> -->
-        <a-button type="link" style="color: #e78708;" @click="onQuery(record.repairId, 'allot')" v-hasPermi="['tenement:prepair:edit']" v-if="record.status !== '2' && userStore?.userInfo?.position==='董事长' || record.status !== '2' && userStore?.userInfo?.position==='ceo' || record.status !== '2' &&  userStore?.userInfo?.position==='se'">
+        <a-button type="link" style="color: #e78708;" @click="onQuery(record.repairId, 'allot')" v-hasPermi="['tenement:prepair:edit']" v-if="record.status !== '2' && userStore?.userInfo?.position==='董事长' || record.status !== '2' && userStore?.userInfo?.position==='ceo' || record.status !== '2' &&  userStore?.userInfo?.position==='se' || record.status !== '2' &&  userStore?.userInfo?.position==='user'">
           <template #icon>
             <Icon icon="uil:edit" style="vertical-align: middle;" />
           </template>
@@ -42,11 +42,11 @@
         <a-popover title="遇见的问题"   v-hasPermi="['tenement:prepair:edit']" trigger="click" v-if="record.status === '1'">
           <template #content>
             <a-textarea v-model:value="remark" placeholder="请输入遇见的问题" :rows="4" />
-            <a-button type="link" v-hasPermi="['tenement:pproperty_unit:edit']" @click="onUpSt(record.repairId, 'upEr', 2)">
+            <a-button type="link" v-hasPermi="['tenement:prepair:edit']" @click="onUpSt(record.repairId, 'upEr', 2)">
             确定
           </a-button> 
           </template>
-          <a-button type="link" v-hasPermi="['tenement:pproperty_unit:edit']">
+          <a-button type="link" v-hasPermi="['tenement:prepair:edit']">
             <template #icon>
               <Icon icon="uil:edit" style="vertical-align: middle;" />
             </template>

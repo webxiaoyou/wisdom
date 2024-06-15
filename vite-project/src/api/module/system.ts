@@ -21,6 +21,7 @@ enum ApiDict {
 
     // 用户管理
     USERLIST = '/system/user/list', //列表
+    USERDICTLIST = '/system/user/dict/list', //列表
     USERID = '/system/user/',  //详情
     USERSA = '/system/user/save',  //新增
     USERUP = '/system/user/update',  //修改
@@ -127,6 +128,9 @@ export const sys_dict_data_del = (data) => {
 // 用户管理
 export const sys_user_list = (data) => {
     return Axios.get(ApiDict.USERLIST, data);
+};
+export const sys_user_dict_list = (data) => {
+    return Axios.get(ApiDict.USERDICTLIST, data);
 };
 export const sys_user_id = (data) => {
     return Axios.get(ApiDict.USERID + data);
